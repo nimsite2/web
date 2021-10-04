@@ -4,6 +4,16 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<title>Hello!</title>
+    <script>
+    window.addEventListener('load', function() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(function() {
+            console.log('Service Worker Registered');
+          });
+      }
+    });
+  </script>
   <link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="apple-touch-icon" href="./favicon.ico" sizes="76x76">
   <link rel="icon" href="./favicon.ico" sizes="96x96">
@@ -46,5 +56,28 @@ a.btn-o:hover {
 </style>
 <h1 style="text-align: center;font-size: 300px;"><font color="red">Hello!</font></h1>
 <div style="text-align: center;"><a class="btn btn-o" href="http://nimwebsite2.php.xdomain.jp/text/index.php">Press</a></div>
+    <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service_worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    });
+    </script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
