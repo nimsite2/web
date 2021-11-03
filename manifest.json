@@ -2,6 +2,7 @@
   "name": "HelloWorld!",
   "short_name": "Hello!",
   "background_color": "#fc980c",
+  "theme_color": "#0aa574",
   "icons": [{
       "src": "./icon-256.png",
       "sizes": "256x256",
