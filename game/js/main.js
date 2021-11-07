@@ -8,11 +8,6 @@ var game = 1;
 var time = 0;
 var cc = cnt;
 var cg = game;
-startse = new Audio("./sud/se/tyouetu.mp3");
-gaov = new Audio("./sud/se/yattenai.mp3");
-getk = new Audio("./sud/se/oyaa.mp3");
-getc = new Audio("./sud/se/nanda.mp3");
-bgm = new Audio("./sud/bgm/超越神力.mp3");
 /*Canvas*/
 
 /*Key*/
@@ -216,6 +211,11 @@ map = [
 //-----------------------------------------------------------------------------------------------//
 function start() {
 if (cnt == 0) {
+	startse = new Audio("./sud/se/tyouetu.mp3");
+	gaov = new Audio("./sud/se/yattenai.mp3");
+	getk = new Audio("./sud/se/oyaa.mp3");
+	getc = new Audio("./sud/se/nanda.mp3");
+	bgm = new Audio("./sud/bgm/超越神力.mp3");
 	startse.play();
 	document.getElementById("startbtn").remove();
 	cnt = 1;
