@@ -8,6 +8,12 @@ var game = 1;
 var time = 0;
 var cc = cnt;
 var cg = game;
+startse = new Audio("./sud/se/tyouetu.mp3");
+gaov = new Audio("./sud/se/yattenai.mp3");
+jmp = new Audio("./sud/se/syu.mp3");
+getk = new Audio("./sud/se/oyaa.mp3");
+getc = new Audio("./sud/se/nanda.mp3");
+bgm = new Audio("./sud/bgm/超越神力.mp3");
 /*Canvas*/
 
 /*Key*/
@@ -211,12 +217,14 @@ map = [
 //-----------------------------------------------------------------------------------------------//
 function start() {
 if (cnt == 0) {
+	startse.play();
 	document.getElementById("startbtn").remove();
 	cnt = 1;
 	starttimer();
 	upd()
 }
 function upd(){
+if (once) {bgm.play()}
 ctx.clearRect(0,0,940,470);
 ctx.drawImage(background,0,0,940,470);
 /*BLOCK*/
@@ -259,24 +267,24 @@ for (var i=0;i<keyY.length;i++) {
 	y<keyY[i]&&
 	x<keyX[i]+30&&
 	x>keyX[i]-30
-	) {key=true}
+	) {key=true;getk.play()}
 	else if (
 	y+32>keyY[i]&&
 	y<keyY[i]&&
 	x<keyX[i]+30&&
 	x>keyX[i]-30
-	) {key=true}
+	) {key=true;getk.play()}
 	else if (
 	y>keyY[i]&&
 	y-32<keyY[i]&&
 	x<keyX[i]+30&&
 	x>keyX[i]-30
-	) {key=true}
+	) {key=true;getk.play()}
 }
 
 for (var i=0;i<keyX.length;i++) {
-if (x>keyX[i]-32&&keyX[i]>x&&y>keyY[i]-32&&keyY[i]+32>y) {key=true}
-else if (x>keyX[i]&&keyX[i]+32>x&&y>keyY[i]-32&&keyY[i]+32>y) {key=true}
+if (x>keyX[i]-32&&keyX[i]>x&&y>keyY[i]-32&&keyY[i]+32>y) {key=true;getk.play()}
+else if (x>keyX[i]&&keyX[i]+32>x&&y>keyY[i]-32&&keyY[i]+32>y) {key=true;getk.play()}
 }
 /*key*/
 
@@ -442,7 +450,7 @@ else if (x>ex&&ex+32>x&&y>ey-32&&ey+32>y) {game=0}
 /*enemy*/
 
 
-if (jump) {y=y+vy;vy=vy+0.05}
+if (jump) {y=y+vy;vy=vy+0.05;jmp.play()}
 if (ejump) {ey=ey+evy;evy=evy+0.05}
 player.src = "./obj/player.png";
 ctx.drawImage(player,x,y,32,32);
@@ -462,13 +470,14 @@ if (x<0) {x=0}
 
 if (game==1) {window.requestAnimationFrame(upd)};
 /*GAMEOVER*/
-if (game==0) {document.getElementById("TEXT").innerHTML = "ゲームオーバー";document.getElementById("cplo").remove();}
+if (game==0) {bgm.pause();gaov.play();document.getElementById("TEXT").innerHTML = "ゲームオーバー";document.getElementById("cplo").remove();}
 /*GAMEOVER*/
 if (game==2) {document.getElementById("TEXT").innerHTML = "クリア Time["+time+"]";}
 };
 };
 
 function savecp() {
+	getc.play()
 	cx = x;
 	cy = y;
 	ck = key;
