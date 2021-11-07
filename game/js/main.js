@@ -232,6 +232,7 @@ if (cnt == 0) {
 	getk = new Audio("./sud/se/oyaa.mp3");
 	getc = new Audio("./sud/se/nanda.mp3");
 	bgm = new Audio("./sud/bgm/超越神力.mp3");
+	clear = new Audio("./sud/se/syoco.mp3");
 	startse.play();
 	document.getElementById("startbtn").remove();
 	cnt = 1;
@@ -636,7 +637,7 @@ if (game==1) {window.requestAnimationFrame(upd)};
 /*GAMEOVER*/
 if (game==0) {bgm.pause();gaov.play();document.getElementById("TEXT").innerHTML = "ゲームオーバー";document.getElementById("cplo").remove();}
 /*GAMEOVER*/
-if (game==2) {document.getElementById("TEXT").innerHTML = "クリア Time["+time+"]";}
+if (game==2) {bgm.pause();clear.play();document.getElementById("TEXT").innerHTML = "クリア Time["+time+"]";}
 };
 };
 
