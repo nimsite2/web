@@ -103,8 +103,8 @@ map = [
 	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//10
 	[02,02,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//11
 	[01,01,06,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,06,00,00,09,00,00,06,00,00],//12
-	[01,01,02,02,02,02,02,02,02,03,00,00,04,02,02,02,03,00,00,00,02,02,02,02,02,02,02,02,02,02],//13
-	[01,01,01,01,01,01,01,01,01,01,00,00,01,01,01,01,01,00,00,00,01,01,01,01,01,01,01,01,01,01] //14
+	[01,01,02,02,02,14,14,02,02,03,00,00,04,02,02,02,03,00,00,00,02,02,02,02,02,02,02,02,02,02],//13
+	[01,01,01,01,01,15,15,01,01,01,00,00,01,01,01,01,01,00,00,00,01,01,01,01,01,01,01,01,01,01] //14
 ];
 }
 else if (s==2){
@@ -225,6 +225,12 @@ if (cnt == 0) {
 function upd(){
 if (once) {bgm.play()}
 ctx.drawImage(background,0,0,940,470);
+
+player.src = "./obj/player.png";
+ctx.drawImage(player,x,y,32,32);
+enemy.src = "./obj/enemy.png";
+ctx.drawImage(enemy,ex,ey,32,32);
+
 /*BLOCK*/
 var bridgeX = new Array()
 var bridgeY = new Array()
@@ -232,6 +238,12 @@ var spikeX = new Array()
 var spikeY = new Array()
 var blocksX = new Array()
 var blocksY = new Array()
+var waterX = new Array()
+var waterY = new Array()
+var sandX = new Array()
+var sandY = new Array()
+var jumperX = new Array()
+var jumperY = new Array()
 var enemyX = new Array()
 var enemyY = new Array()
 var keyX = new Array()
@@ -250,6 +262,11 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 		if (map[my][mx] === 9&&once) {ex=32*mx, ey=32*my;}
 		if (map[my][mx] === 10&&once) {x=32*mx, y=32*my;}
 		if (map[my][mx] === 11&&!cp==true) {ctx.drawImage( mapchip, 96, 32, 32, 32, 32*mx, 32*my, 32, 32 );cpX.push(mx*32);cpY.push(my*32)}
+		if (map[my][mx] === 12) {ctx.drawImage( mapchip, 128, 0, 32, 32, 32*mx, 32*my, 32, 32 );waterX.push(mx*32);waterY.push(my*32)}
+		if (map[my][mx] === 13) {ctx.drawImage( mapchip, 160, 0, 32, 32, 32*mx, 32*my, 32, 32 );waterX.push(mx*32);waterY.push(my*32)}
+		if (map[my][mx] === 14) {ctx.drawImage( mapchip, 192, 0, 32, 32, 32*mx, 32*my, 32, 32 );sandX.push(mx*32);sandY.push(my*32)}
+		if (map[my][mx] === 15) {ctx.drawImage( mapchip, 224, 0, 32, 32, 32*mx, 32*my, 32, 32 );sandX.push(mx*32);sandY.push(my*32)}
+		if (map[my][mx] === 16) {ctx.drawImage( mapchip, 128, 32, 32, 32, 32*mx, 32*my, 32, 32 );jumperX.push(mx*32);jumperY.push(my*32)}
 }}
 /*BLOCK*/
 
@@ -260,13 +277,6 @@ if (inkey[32]&&!jump) {vy=-jumpheight;jump=true}
 /*key*/
 for (var i=0;i<keyY.length;i++) {
 	if (
-	!inkey[32]&&
-	y+32.001>keyY[i]&&
-	y<keyY[i]&&
-	x<keyX[i]+30&&
-	x>keyX[i]-30
-	) {key=true;getk.play()}
-	else if (
 	y+32>keyY[i]&&
 	y<keyY[i]&&
 	x<keyX[i]+30&&
@@ -289,13 +299,6 @@ else if (x>keyX[i]&&keyX[i]+32>x&&y>keyY[i]-32&&keyY[i]+32>y) {key=true;getk.pla
 /*cp*/
 for (var i=0;i<cpY.length;i++) {
 	if (
-	!inkey[32]&&
-	y+32.001>cpY[i]&&
-	y<cpY[i]&&
-	x<cpX[i]+30&&
-	x>cpX[i]-30
-	) {cp=true;savecp()}
-	else if (
 	y+32>cpY[i]&&
 	y<cpY[i]&&
 	x<cpX[i]+30&&
@@ -336,14 +339,59 @@ for (var i=0;i<blocksY.length;i++) {
 	y-32<blocksY[i]&&
 	x<blocksX[i]+30&&
 	x>blocksX[i]-30
-	) {y=blocksY[i]+32;vh=0}
+	) {y=blocksY[i]+32;vy=0}
 }
 
 for (var i=0;i<blocksX.length;i++) {
 if (x>blocksX[i]-32&&blocksX[i]>x&&y>blocksY[i]-32&&blocksY[i]+32>y) {x=blocksX[i]-32}
 else if (x>blocksX[i]&&blocksX[i]+32>x&&y>blocksY[i]-32&&blocksY[i]+32>y) {x=blocksX[i]+32}
 }
-/*block*/
+
+/*water*/
+for (var i=0;i<waterY.length;i++) {
+	if (
+	inkey[32]&&
+	y+32>waterY[i]&&
+	y<waterY[i]&&
+	x<waterX[i]+30&&
+	x>waterX[i]-30
+	) {y=y-0.3;vy=-3;jump=false}
+}
+for (var i=0;i<waterX.length;i++) {
+if (inkey[32]&&x>waterX[i]-32&&waterX[i]>x&&y>waterY[i]-32&&waterY[i]+32>y) {y=y-0.3;vy=-3;jump=false}
+else if (inkey[32]&&x>waterX[i]&&waterX[i]+32>x&&y>waterY[i]-32&&waterY[i]+32>y) {y=y-0.3;vy=-3;jump=false}
+}
+/*water*/
+
+/*sand*/
+for (var i=0;i<sandY.length;i++) {
+	if (
+	y+32>sandY[i]&&
+	y<sandY[i]&&
+	x<sandX[i]+30&&
+	x>sandX[i]-30
+	) {y=y+0.3;vy=+0.1;jump=true}
+}
+for (var i=0;i<sandX.length;i++) {
+if (x>sandX[i]-32&&sandX[i]>x&&y>sandY[i]-32&&sandY[i]+32>y) {y=y+0.3;vy=+0.1;jump=true}
+else if (x>sandX[i]&&sandX[i]+32>x&&y>sandY[i]-32&&sandY[i]+32>y) {y=y+0.3;vy=+0.1;jump=true}
+}
+/*sand*/
+
+/*jumper*/
+for (var i=0;i<jumperY.length;i++) {
+	if (
+	y+32>jumperY[i]&&
+	y<jumperY[i]&&
+	x<jumperX[i]+30&&
+	x>jumperX[i]-30
+	) {y=y-0.3;vy=-3;jump=true}
+}
+for (var i=0;i<jumperX.length;i++) {
+if (x>jumperX[i]-32&&jumperX[i]>x&&y>jumperY[i]-32&&jumperY[i]+32>y) {y=y-0.3;vy=-3;jump=true}
+else if (x>jumperX[i]&&jumperX[i]+32>x&&y>jumperY[i]-32&&jumperY[i]+32>y) {y=y-0.3;vy=-3;jump=true}
+}
+/*jumper*/
 
 /*Eblock*/
 ejump=true
@@ -359,7 +407,7 @@ for (var i=0;i<blocksY.length;i++) {
 	ey-32<blocksY[i]&&
 	ex<blocksX[i]+30&&
 	ex>blocksX[i]-30
-	) {ey=blocksY[i]+32;evh=0}
+	) {ey=blocksY[i]+32;evy=0}
 }
 
 for (var i=0;i<blocksX.length;i++) {
@@ -381,7 +429,7 @@ for (var i=0;i<spikeY.length;i++) {
 	ey-32<spikeY[i]&&
 	ex<spikeX[i]+30&&
 	ex>spikeX[i]-30
-	) {ey=spikeY[i]+32;evh=0}
+	) {ey=spikeY[i]+32;evy=0}
 }
 
 for (var i=0;i<spikeX.length;i++) {
@@ -450,10 +498,6 @@ else if (x>ex&&ex+32>x&&y>ey-32&&ey+32>y) {game=0}
 
 if (jump) {y=y+vy;vy=vy+0.05}
 if (ejump) {ey=ey+evy;evy=evy+0.05}
-player.src = "./obj/player.png";
-ctx.drawImage(player,x,y,32,32);
-enemy.src = "./obj/enemy.png";
-ctx.drawImage(enemy,ex,ey,32,32);
 
 if (turn==1) {ex=ex+espeed} else if (turn==0) {ex=ex-espeed}
 
