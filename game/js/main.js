@@ -10,7 +10,6 @@ var cc = cnt;
 var cg = game;
 startse = new Audio("./sud/se/tyouetu.mp3");
 gaov = new Audio("./sud/se/yattenai.mp3");
-jmp = new Audio("./sud/se/syu.mp3");
 getk = new Audio("./sud/se/oyaa.mp3");
 getc = new Audio("./sud/se/nanda.mp3");
 bgm = new Audio("./sud/bgm/超越神力.mp3");
@@ -225,7 +224,6 @@ if (cnt == 0) {
 }
 function upd(){
 if (once) {bgm.play()}
-ctx.clearRect(0,0,940,470);
 ctx.drawImage(background,0,0,940,470);
 /*BLOCK*/
 var bridgeX = new Array()
@@ -450,7 +448,7 @@ else if (x>ex&&ex+32>x&&y>ey-32&&ey+32>y) {game=0}
 /*enemy*/
 
 
-if (jump) {y=y+vy;vy=vy+0.05;jmp.play()}
+if (jump) {y=y+vy;vy=vy+0.05}
 if (ejump) {ey=ey+evy;evy=evy+0.05}
 player.src = "./obj/player.png";
 ctx.drawImage(player,x,y,32,32);
