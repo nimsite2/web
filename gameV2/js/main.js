@@ -526,7 +526,7 @@ frame++
 console.log(frame);document.getElementById("framecnt").innerHTML = "frame["+frame+"]";
 if (game==1) {window.requestAnimationFrame(upd)}
 }
-setTimeout(frm,2);
+setTimeout(frm,6);
 
 if (x>930&&3>screen) {screen++;x=0;makemap(screen)} else if (x>930){game=2}
 if (x<0&&0<screen) {screen--;x=930;makemap(screen)} else if (x<0) {x=0}
