@@ -89,14 +89,14 @@ map = [
 //   -0--1--2--3--4--5--6--7--8--9--0--1--2--3--4--5--6--7--8--9--0--1--2--3--4--5--6--7--8
 	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//00
 	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//01
-	[00,00,00,00,00,00,00,00,00,11,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//02
-	[22,21,24,23,26,25,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//03
-	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,11,00,00,00,00,00,00,00,00,00],//04
-	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,11,00,00,00,00,00,00,00,00,00,00,00,00,00],//05
-	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//06
-	[08,00,00,00,00,00,09,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,00,00,00,00,00],//07
-	[05,05,05,05,65,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,00,00,00,00,22],//08
-	[00,00,00,00,06,00,00,00,00,00,00,00,00,00,00,28,28,28,00,00,30,00,00,00,22,00,00,00,00,00],//09
+	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//02
+	[22,21,24,23,26,25,00,00,00,00,31,32,33,34,35,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//03
+	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00],//04
+	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,11,00,00,00,15,00,00,00,00,00,00,00,00,00],//05
+	[00,00,00,00,00,00,00,00,00,00,00,00,14,15,00,00,00,00,00,00,00,15,00,00,00,00,00,00,00,00],//06
+	[08,00,00,00,00,00,09,00,00,00,00,14,16,17,15,00,00,00,00,00,00,00,15,00,22,00,00,00,00,00],//07
+	[05,05,05,05,65,05,05,00,00,00,14,00,00,00,15,00,00,00,15,00,00,00,00,00,22,00,00,00,00,22],//08
+	[00,00,00,00,06,00,00,00,00,14,00,00,00,14,00,28,28,28,00,15,30,00,00,00,22,00,00,00,00,00],//09
 	[03,00,00,00,06,00,00,00,00,00,00,00,00,00,00,27,27,27,00,00,29,00,00,00,22,00,00,00,00,00],//10
 	[01,00,00,00,06,00,00,05,05,05,05,05,05,05,00,27,27,27,00,00,29,00,00,00,22,00,00,00,00,00],//11
 	[01,00,10,00,06,14,00,22,00,11,22,11,00,22,00,27,27,27,00,00,29,00,00,00,22,00,13,00,00,21],//12
@@ -206,8 +206,10 @@ var spikeX = new Array();//
 var spikeY = new Array();//
 var blocksX = new Array();//
 var blocksY = new Array();//
-var slopeX = new Array();//
-var slopeY = new Array();//
+var slopeRX = new Array();//
+var slopeRY = new Array();//
+var slopeLX = new Array();//
+var slopeLY = new Array();//
 var waterX = new Array();//
 var waterY = new Array();//
 var sandX = new Array();//
@@ -237,7 +239,10 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*player*/	if (map[my][mx] === 10&&once&&spawn) {x=32*mx, y=32*my;cx=x;cy=y}
 /*enemy*/ 	if (map[my][mx] === 11&&once&&espawn) {enemyX.push(mx*32);enemyY.push(my*32);enemyturn.push(true);enemyjump.push(true);enemyV.push(0);espeed.push(0.8);}
 /*-cp-*/	if (map[my][mx] === 13&&!cp==true) {ctx.drawImage( mapchip, 64, 32, 32, 32, 32*mx, 32*my, 32, 32 );cpX.push(mx*32);cpY.push(my*32)}
-/*slope*/ 	if (map[my][mx] === 14) {ctx.drawImage( mapchip, 128, 32, 32, 32, 32*mx, 32*my, 32, 32 );slopeX.push(mx*32);slopeY.push(my*32)}
+/*slopeR*/ 	if (map[my][mx] === 14) {ctx.drawImage( mapchip, 128, 32, 32, 32, 32*mx, 32*my, 32, 32 );slopeRX.push(mx*32);slopeRY.push(my*32)}
+/*slopeL*/ 	if (map[my][mx] === 15) {ctx.drawImage( mapchip, 160, 32, 32, 32, 32*mx, 32*my, 32, 32 );slopeLX.push(mx*32);slopeLY.push(my*32)}
+/*slopeDR*/ 	if (map[my][mx] === 16) {ctx.drawImage( mapchip, 192, 32, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*slopeDL*/ 	if (map[my][mx] === 17) {ctx.drawImage( mapchip, 224, 32, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 /*spikeA*/ if (map[my][mx] === 21) {ctx.drawImage( mapchip, 64, 64, 32, 32, 32*mx, 32*my, 32, 32 );spikeX.push(mx*32);spikeY.push(my*32)}
 /*blockA*/ if (map[my][mx] === 22) {ctx.drawImage( mapchip, 96, 64, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 /*spikeB*/ if (map[my][mx] === 23&&!key) {ctx.drawImage( mapchip, 128, 64, 32, 32, 32*mx, 32*my, 32, 32 );spikeX.push(mx*32);spikeY.push(my*32)}
@@ -248,6 +253,11 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*waterT*/ if (map[my][mx] === 28) {ctx.drawImage( mapchip, 128, 0, 32, 32, 32*mx, 32*my, 32, 32 );waterX.push(mx*32);waterY.push(my*32)}
 /*sandT*/ if (map[my][mx] === 29) {ctx.drawImage( mapchip, 224, 0, 32, 32, 32*mx, 32*my, 32, 32 );sandX.push(mx*32);sandY.push(my*32)}
 /*sandB*/ if (map[my][mx] === 30) {ctx.drawImage( mapchip, 192, 0, 32, 32, 32*mx, 32*my, 32, 32 );sandX.push(mx*32);sandY.push(my*32)}
+/*dirtR*/ 	if (map[my][mx] === 31) {ctx.drawImage( mapchip, 0, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*dirtL*/ 	if (map[my][mx] === 32) {ctx.drawImage( mapchip, 32, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*dirtB*/ 	if (map[my][mx] === 33) {ctx.drawImage( mapchip, 96, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*dirtLB*/ 	if (map[my][mx] === 34) {ctx.drawImage( mapchip, 128, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*dirtRB*/ 	if (map[my][mx] === 35) {ctx.drawImage( mapchip, 64, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 }}
 /*BLOCK*/
 
@@ -304,30 +314,27 @@ else if (x>blocksX[i]&&blocksX[i]+hitboxX>x&&y>blocksY[i]-hitboxX&&blocksY[i]+hi
 }
 /*block-------------------------------------------------------------------------------------------*/
 
-/*slope*/
-for (var i=0;i<slopeY.length;i++) {
+/*slopeR*/
+for (var i=0;i<slopeRY.length;i++) {
 	if (
-	!inkey[32]&&
-	y+hitboxY+0.00001>slopeY[i]&&
-	y<slopeY[i]&&
-	x<slopeX[i]+hitboxX-2&&
-	x>slopeX[i]-hitboxX+2
-	) {y=slopeY[i]-x+slopeX[i];jump=false;vy=0}
-	else if (
-	y+hitboxY>slopeY[i]&&
-	y<slopeY[i]&&
-	x<slopeX[i]+hitboxX-2&&
-	x>slopeX[i]-hitboxX+2
-	) {y=slopeY[i]-hitboxY;jump=false;vy=0}
-	else if (
-	y>slopeY[i]&&
-	y-hitboxY<slopeY[i]&&
-	x<slopeX[i]+hitboxX-2&&
-	x>slopeX[i]-hitboxX+2
-	) {y=slopeY[i]+hitboxY;vy=0}
-if (x>slopeX[i]&&slopeX[i]+hitboxX>x&&y>slopeY[i]-hitboxX&&slopeY[i]+hitboxX>y) {x=slopeX[i]+hitboxX}
+	y+hitboxY+(x-slopeRX[i])-5>slopeRY[i]&&
+	y<slopeRY[i]&&
+	x<slopeRX[i]+hitboxX&&
+	x>slopeRX[i]-hitboxX
+	) {y=slopeRY[i]-(x-slopeRX[i])-hitboxX;jump=false;vy=0}
 }
-/*slope-------------------------------------------------------------------------------------------*/
+/*slopeR-------------------------------------------------------------------------------------------*/
+
+/*slopeL*/
+for (var i=0;i<slopeLY.length;i++) {
+	if (
+	y+hitboxY-(x-slopeLX[i])-5>slopeLY[i]&&
+	y<slopeLY[i]&&
+	x<slopeLX[i]+hitboxX&&
+	x>slopeLX[i]-hitboxX
+	) {y=slopeLY[i]+(x-slopeLX[i])-hitboxX;jump=false;vy=0}
+}
+/*slopeL-------------------------------------------------------------------------------------------*/
 
 /*spike*/
 for (var i=0;i<spikeY.length;i++) {
