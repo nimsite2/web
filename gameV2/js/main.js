@@ -42,6 +42,13 @@ var hitboxX = 20;
 var hitboxY = 25;
 /*Player*/
 
+/*ball*/
+var ballimg = new Image;
+ballimg.src = "./obj/ball.png";
+var ball = false;
+var ballspeed = 1;
+/*ball*/
+
 /*enemy*/
 var enemy = new Image();
 enemy.src = "./obj/enemy.png";
@@ -260,13 +267,19 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*dirtRB*/ 	if (map[my][mx] === 35) {ctx.drawImage( mapchip, 64, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 }}
 /*BLOCK*/
-
-
+ball=false
+if (inkey[13]) {ball=true}
 if (inkey[39]) {x=x+xspeed;playerturn=0}
 if (inkey[37]) {x=x-xspeed;playerturn=1}
 if (inkey[32]&&!jump) {vy=-0.5;jump=true;isjump=true}
 if (isjump&&inkey[32]&&vy>-(jumpheight)) {vy=vy-0.20} else {isjump=false}
 jump=true
+
+
+
+if (ball) {
+	ctx.drawImage(ball,x,y,32,32);	
+}
 
 
 /*cp*/
@@ -354,7 +367,7 @@ if (x>spikeX[i]-hitboxX&&spikeX[i]>x&&y>spikeY[i]-hitboxX&&spikeY[i]+hitboxX>y) 
 else if (x>spikeX[i]&&spikeX[i]+hitboxX>x&&y>spikeY[i]-hitboxX&&spikeY[i]+hitboxX>y) {game=0}
 }
 /*spike-------------------------------------------------------------------------------------------*/
-	
+
 /*enemy*/
 for (var i=0;i<enemyY.length;i++) {
 enemyjump[i]=true
