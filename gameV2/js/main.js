@@ -337,21 +337,21 @@ else if (x>powerX[i]&&powerX[i]+hitboxX>x&&y>powerY[i]-hitboxX&&powerY[i]+hitbox
 /*power-------------------------------------------------------------------------------------------*/
 
 /*depower*/
-for (var i=0;i<powerY.length;i++) {
+for (var i=0;i<depowerY.length;i++) {
 	if (
-	y+hitboxY>powerY[i]&&
-	y<powerY[i]&&
-	x<powerX[i]+hitboxX-2&&
-	x>powerX[i]-hitboxX+2
+	y+hitboxY>depowerY[i]&&
+	y<depowerY[i]&&
+	x<depowerX[i]+hitboxX-2&&
+	x>depowerX[i]-hitboxX+2
 	) {power=false;getk.play()}
 	else if (
-	y>powerY[i]&&
-	y-hitboxY<powerY[i]&&
-	x<powerX[i]+hitboxX-2&&
-	x>powerX[i]-hitboxX+2
+	y>depowerY[i]&&
+	y-hitboxY<depowerY[i]&&
+	x<depowerX[i]+hitboxX-2&&
+	x>depowerX[i]-hitboxX+2
 	) {power=false;getk.play()}
-if (x>powerX[i]-hitboxX&&powerX[i]>x&&y>powerY[i]-hitboxX&&powerY[i]+hitboxX>y) {power=false;getk.play()}
-else if (x>powerX[i]&&powerX[i]+hitboxX>x&&y>powerY[i]-hitboxX&&powerY[i]+hitboxX>y) {power=false;getk.play()}
+if (x>depowerX[i]-hitboxX&&depowerX[i]>x&&y>depowerY[i]-hitboxX&&depowerY[i]+hitboxX>y) {power=false;getk.play()}
+else if (x>depowerX[i]&&depowerX[i]+hitboxX>x&&y>depowerY[i]-hitboxX&&depowerY[i]+hitboxX>y) {power=false;getk.play()}
 }
 /*depower-------------------------------------------------------------------------------------------*/
 
