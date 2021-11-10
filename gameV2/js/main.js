@@ -41,6 +41,7 @@ var playerturn=0;
 var hitboxX = 20;
 var hitboxY = 25;
 var power = false
+var cpw = power
 /*Player*/
 
 /*ball*/
@@ -95,7 +96,6 @@ function makemap(s) {
 if (s==0){
 once=true;
 espawn = true;
-power=false;
 ball=false;
 bally = 500;
 mapchip.src = "./obj/tile.png";
@@ -215,19 +215,19 @@ if (ball) {
 		bally<blocksY[i]&&
 		ballx<blocksX[i]+ballhitboxX-2&&
 		ballx>blocksX[i]-ballhitboxX+2
-	) {ball=false}
+	) {ball=false;bally=500}
 		else if (
 		bally>blocksY[i]&&
 		bally-ballhitboxY<blocksY[i]&&
 		ballx<blocksX[i]+ballhitboxX-2&&
 		ballx>blocksX[i]-ballhitboxX+2
-	) {ball=false}
-	if (ballx>blocksX[i]-ballhitboxX&&blocksX[i]>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false}
-	else if (ballx>blocksX[i]&&blocksX[i]+ballhitboxX>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false}
+	) {ball=false;bally=500}
+	if (ballx>blocksX[i]-ballhitboxX&&blocksX[i]>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false;bally=500}
+	else if (ballx>blocksX[i]&&blocksX[i]+ballhitboxX>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false;bally=500}
 	}
 
-	if (ballx>map[0].length*32){ball=false}
-	if (ballx<0) {ball=false}
+	if (ballx>map[0].length*32){ball=false;bally=500}
+	if (ballx<0) {ball=false;bally=500}
 }
 
 
@@ -398,13 +398,13 @@ if (enemyturn[i]) {enemyX[i]=enemyX[i]+espeed[i]} else if (!enemyturn[i]) {enemy
 	bally<enemyY[i]&&
 	ballx<enemyX[i]+32-2&&
 	ballx>enemyX[i]-32+2
-) {ball=false;enemyY[i]=1500}
+) {ball=false;bally=500;enemyY[i]=1500}
 	else if (
 	bally>enemyY[i]&&
 	bally-32<enemyY[i]&&
 	ballx<enemyX[i]+32-2&&
 	ballx>enemyX[i]-32+2
-) {ball=false;enemyY[i]=1500}
+) {ball=false;bally=500;enemyY[i]=1500}
 }
 /*enemy-------------------------------------------------------------------------------------------*/
 
@@ -575,7 +575,7 @@ espawn=false;
 	cey = enemyY;
 	cev = enemyV;
 	ces = espeed;
-
+	cpw = power;
 }
 
 function loadcp(){
@@ -593,6 +593,7 @@ function loadcp(){
 	enemyY = cey
 	enemyV = cev
 	espeed = ces
+	power = cpw
 	document.getElementById("TEXT").innerHTML = "";
 	game = 1;
 	ctx.setTransform(1,0,0,1,0,0)
