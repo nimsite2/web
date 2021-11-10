@@ -40,7 +40,7 @@ var spawn=true;
 var playerturn=0;
 var hitboxX = 20;
 var hitboxY = 25;
-var power = false;
+var power = false
 /*Player*/
 
 /*ball*/
@@ -96,6 +96,7 @@ function makemap(s) {
 if (s==0){
 once=true;
 espawn = true;
+power=false;
 mapchip.src = "./obj/tile.png";
 map = [
 //   -0-----------------------------1-----------------------------2--------------------------
@@ -110,7 +111,7 @@ map = [
 	[00,00,00,00,00,00,00,00,05,05,26,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//07
 	[00,00,00,00,00,00,00,00,00,00,26,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24],//08
 	[00,00,00,00,00,00,05,05,00,00,26,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24],//09
-	[00,00,00,00,00,00,00,00,00,00,26,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24],//10
+	[00,00,00,00,00,00,00,00,00,00,26,00,00,00,36,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24],//10
 	[00,00,00,00,00,00,00,00,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24],//11
 	[00,00,10,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//12
 	[02,02,02,02,02,02,02,03,24,24,04,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02],//13
@@ -120,6 +121,7 @@ map = [
 else if (s==1){
 once=true;
 espawn = true;
+power=false;
 mapchip.src = "./obj/tile.png";
 map = [
 //   -0-----------------------------1-----------------------------2--------------------------
@@ -144,6 +146,7 @@ map = [
 else if (s==2){
 once=true;
 espawn = true;
+power=false;
 mapchip.src = "./obj/tile.png";
 map = [
 //   -0-----------------------------1-----------------------------2--------------------------
@@ -168,6 +171,7 @@ map = [
 else if (s==3){
 once=true;
 espawn = true;
+power=false;
 mapchip.src = "./obj/tile.png";
 map = [
 //   -0-----------------------------1-----------------------------2--------------------------
@@ -235,6 +239,8 @@ var keyBX = new Array();//
 var keyBY = new Array();//
 var cpX = new Array();
 var cpY = new Array();
+var powerX = new Array();
+var powerY = new Array();
 if (playerturn==0) {ctx.drawImage(playerR,x,y,32,32)}
 else if (playerturn==1) {ctx.drawImage(playerL,x,y,32,32)};
 for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
@@ -271,6 +277,7 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*dirtB*/ 	if (map[my][mx] === 33) {ctx.drawImage( mapchip, 96, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 /*dirtLB*/ 	if (map[my][mx] === 34) {ctx.drawImage( mapchip, 128, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 /*dirtRB*/ 	if (map[my][mx] === 35) {ctx.drawImage( mapchip, 64, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
+/*power*/ 	if (map[my][mx] === 36&&!power) {ctx.drawImage( mapchip, 160, 96, 32, 32, 32*mx, 32*my, 32, 32 );powerX.push(mx*32);powerY.push(my*32)}
 }}
 /*BLOCK*/
 if (inkey[39]) {x=x+xspeed;playerturn=0}
@@ -394,6 +401,25 @@ if (x>spikeX[i]-hitboxX&&spikeX[i]>x&&y>spikeY[i]-hitboxX&&spikeY[i]+hitboxX>y) 
 else if (x>spikeX[i]&&spikeX[i]+hitboxX>x&&y>spikeY[i]-hitboxX&&spikeY[i]+hitboxX>y) {game=0}
 }
 /*spike-------------------------------------------------------------------------------------------*/
+
+/*power*/
+for (var i=0;i<powerY.length;i++) {
+	if (
+	y+hitboxY>powerY[i]&&
+	y<powerY[i]&&
+	x<powerX[i]+hitboxX-2&&
+	x>powerX[i]-hitboxX+2
+	) {power=true}
+	else if (
+	y>powerY[i]&&
+	y-hitboxY<powerY[i]&&
+	x<powerX[i]+hitboxX-2&&
+	x>powerX[i]-hitboxX+2
+	) {power=true}
+if (x>powerX[i]-hitboxX&&powerX[i]>x&&y>powerY[i]-hitboxX&&powerY[i]+hitboxX>y) {power=true}
+else if (x>powerX[i]&&powerX[i]+hitboxX>x&&y>powerY[i]-hitboxX&&powerY[i]+hitboxX>y) {power=true}
+}
+/*power-------------------------------------------------------------------------------------------*/
 
 /*enemy*/
 for (var i=0;i<enemyY.length;i++) {
