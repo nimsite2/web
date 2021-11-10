@@ -1,5 +1,6 @@
 #canvas{
-	background-color: #ee8;
+	background-image: url("title.png");
+	background-size: 120vh,60vh;
 	width: 120vh;
 	height: 60vh;
 }
