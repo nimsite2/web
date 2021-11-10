@@ -40,13 +40,19 @@ var spawn=true;
 var playerturn=0;
 var hitboxX = 20;
 var hitboxY = 25;
+var power = false;
 /*Player*/
 
 /*ball*/
 var ballimg = new Image;
 ballimg.src = "./obj/ball.png";
 var ball = false;
-var ballspeed = 1;
+var ballspeed = 10;
+var ballx = x;
+var bally = y;
+var ballhitboxX = 20;
+var ballhitboxY = 20;
+var ballturn = playerturn;
 /*ball*/
 
 /*enemy*/
@@ -267,10 +273,9 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*dirtRB*/ 	if (map[my][mx] === 35) {ctx.drawImage( mapchip, 64, 96, 32, 32, 32*mx, 32*my, 32, 32 );blocksX.push(mx*32);blocksY.push(my*32)}
 }}
 /*BLOCK*/
-ball=false
-if (inkey[13]) {ball=true}
 if (inkey[39]) {x=x+xspeed;playerturn=0}
 if (inkey[37]) {x=x-xspeed;playerturn=1}
+if (inkey[16]&&!ball&&power) {	ballx=x;bally=y;ball=true;ballturn=playerturn}
 if (inkey[32]&&!jump) {vy=-0.5;jump=true;isjump=true}
 if (isjump&&inkey[32]&&vy>-(jumpheight)) {vy=vy-0.20} else {isjump=false}
 jump=true
@@ -278,7 +283,29 @@ jump=true
 
 
 if (ball) {
-	ctx.drawImage(ball,x,y,32,32);	
+	ctx.drawImage(ballimg,ballx,bally,32,32);
+	if (ballturn==0) {ballx=ballx+ballspeed}
+	if (ballturn==1) {ballx=ballx-ballspeed}
+
+	for (var i=0;i<blocksY.length;i++) {
+		if (
+		bally+ballhitboxY>blocksY[i]&&
+		bally<blocksY[i]&&
+		ballx<blocksX[i]+ballhitboxX-2&&
+		ballx>blocksX[i]-ballhitboxX+2
+	) {ball=false}
+		else if (
+		bally>blocksY[i]&&
+		bally-ballhitboxY<blocksY[i]&&
+		ballx<blocksX[i]+ballhitboxX-2&&
+		ballx>blocksX[i]-ballhitboxX+2
+	) {ball=false}
+	if (ballx>blocksX[i]-ballhitboxX&&blocksX[i]>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false}
+	else if (ballx>blocksX[i]&&blocksX[i]+ballhitboxX>ballx&&bally>blocksY[i]-ballhitboxX&&blocksY[i]+ballhitboxX>bally) {ball=false}
+	}
+
+	if (ballx>930){ball=false}
+	if (ballx<0) {ball=false}
 }
 
 
@@ -404,6 +431,19 @@ if (x>enemyX[i]-hitboxX&&enemyX[i]>x&&y>enemyY[i]-hitboxX&&enemyY[i]+hitboxX>y) 
 else if (x>enemyX[i]&&enemyX[i]+hitboxX>x&&y>enemyY[i]-hitboxX&&enemyY[i]+hitboxX>y) {game=0}
 if (enemyjump[i]) {enemyY[i]=enemyY[i]+enemyV[i];enemyV[i]=enemyV[i]+0.05}
 if (enemyturn[i]) {enemyX[i]=enemyX[i]+espeed[i]} else if (!enemyturn[i]) {enemyX[i]=enemyX[i]-espeed[i]}
+
+	if (
+	bally+32>enemyY[i]&&
+	bally<enemyY[i]&&
+	ballx<enemyX[i]+32-2&&
+	ballx>enemyX[i]-32+2
+) {ball=false;enemyY[i]=1500}
+	else if (
+	bally>enemyY[i]&&
+	bally-32<enemyY[i]&&
+	ballx<enemyX[i]+32-2&&
+	ballx>enemyX[i]-32+2
+) {ball=false;enemyY[i]=1500}
 }
 /*enemy-------------------------------------------------------------------------------------------*/
 
