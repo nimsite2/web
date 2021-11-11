@@ -9,9 +9,18 @@
 <body>
 <canvas id="canvas"></canvas><br>
 <div>
-<h1 id="timer"></h1><h1 id="framecnt"></h1><h1 id="death"></h1>
+<h1 id="map"></h1><h1 id="timer"></h1><h1 id="framecnt"></h1><h1 id="death"></h1>
 </div>
-<input id="startbtn" class="btn" type="button" value="Start" onclick="start();">
+<input id="startbtn" class="sbtn" type="button" value="Start" onclick="start();">
+<form name="select">
+<select id="sel" name="opt" class="sel">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+</select>
+</form>
 <input class="btn" type="button" value="RE" onclick="location.reload();">
 <input id="cplo" class="btn" type="button" value="CP" onclick="loadcp()">
 <script type="text/javascript" src="js/main.js"></script>
