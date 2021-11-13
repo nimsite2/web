@@ -358,11 +358,21 @@ if (cnt == 0) {
 			var tit=titleimg5
 			break;
 	}
-	ctx.drawImage(tit,0,0,960,480)
-	setTimeout(upd,2000)
-	setTimeout(starttimer,2000)
-}
 
+
+	var sctim = 0;
+	sctima();
+	function sctima() {
+	ctx.drawImage(tit,0,0,960,sctim)
+	sctim+=5
+	if(sctim<=480) {setTimeout(sctima,5)};
+	}
+	setTimeout(wait,600)
+}
+function wait(){
+setTimeout(upd,2000)
+setTimeout(starttimer,2000)
+}
 
 function upd(){
 if (once) {makemap(screen)}
