@@ -7,11 +7,23 @@
 	<title>SONSI-GAME</title>
 </head>
 <body>
-<canvas id="canvas"></canvas><br>
-<div>
-<h1 id="map"></h1><h1 id="framecnt"></h1><h1 id="death"></h1><h1 id="timer"></h1>
+<div class="cvs">
+<canvas id="canvas"></canvas>
+<div id="controller">
+<div class = "ctrl">
+<div class="ctrlbtn1"><button class="ctrlbtn" onmouseout="inkey[38]=false" onmousedown="inkey[38]=true" onmouseup="inkey[38]=false"><div class="btnimg btnimg1"></div></button></div>
+<div class="ctrlbtn2"><button class="ctrlbtn" onmouseout="inkey[39]=false" onmousedown="inkey[39]=true" onmouseup="inkey[39]=false"><div class="btnimg btnimg2"></div></button></div>
+<div class="ctrlbtn3"><button class="ctrlbtn" onmouseout="inkey[40]=false" onmousedown="inkey[40]=true" onmouseup="inkey[40]=false"><div class="btnimg btnimg3"></div></button></div>
+<div class="ctrlbtn4"><button class="ctrlbtn" onmouseout="inkey[37]=false" onmousedown="inkey[37]=true" onmouseup="inkey[37]=false"><div class="btnimg btnimg4"></div></button></div>
 </div>
-<input id="startbtn" class="sbtn" type="button" value="Start" onclick="start();">
+<div class="ctrl2">
+<div class="ctrlbtn21"><button class="ctrlbtn" onmouseout="inkey[32]=false" onmousedown="inkey[32]=true" onmouseup="inkey[32]=false"><div class="btnimgj"></div></button></div>
+<div class="ctrlbtn22"><button class="ctrlbtn" onmouseout="inkey[16]=false" onmousedown="inkey[16]=true" onmouseup="inkey[16]=false"><div class="btnimgs"></div></button></div>
+<div class="ctrlbtn23"><button class="ctrlbtn" onmouseout="inkey[82]=false" onmousedown="inkey[82]=true" onmouseup="inkey[82]=false"><div class="btnimgc"></div></button></div>
+</div>
+</div>
+</div>
+<div class="status"><h1 id="map"></h1><h1 id="framecnt"></h1><h1 id="death"></h1><h1 id="timer"></h1></div>
 <form name="select">
 <select style="font-size: 100%;" id="sel" name="opt" class="sel">
 	<option value="1"><script>document.write("1  :  besttime["+window.localStorage.getItem("map1save")+"]   death["+window.localStorage.getItem("map1death")+"]")</script></option>
@@ -21,6 +33,9 @@
 	<option value="5"><script>document.write("5  :  besttime["+window.localStorage.getItem("map5save")+"]   death["+window.localStorage.getItem("map5death")+"]")</script></option>
 </select>
 </form>
+<input id="startbtn" class="sbtn" type="button" value="Start" onclick="start();">
+<input id="chbox" onchange="checkchange()" class="cx" type="checkbox" >
+<label>controller</label>
 <input class="btn" type="button" value="Reload" onclick="location.reload();">
 <script type="text/javascript" src="js/main.js"></script>
 <h1 id="TEXT"></h1>

@@ -1,9 +1,125 @@
 #canvas{
 	background-image: url("title.png");
 	background-size: 120vh,60vh;
-	width: 80%;
-	height: 40%;
+	width: 120vh;
+	height: 60vh;
+	border-radius: 10px 10px 10px 10px;
+	border-color: red;
+	border-style: ridge;
 }
+
+.cvs{
+	margin: 0 auto;
+	width: 120vh;
+	height: 60vh;
+}
+
+.ctrlbtn {
+	background-color: #aaa;
+	font-weight: bold;
+	opacity: 0.7;
+	position: relative;
+	border-color: black;
+	border-style: ridge;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.ctrlbtn:active{
+	background-color: #555;
+	font-weight: bold;
+	opacity: 0.7;
+	position: relative;
+	border-color: black;
+	border-style: ridge;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.btnimg {
+	color: black;
+	border-bottom: 30px solid;
+	border-right: 20px solid transparent;
+	border-left: 20px solid transparent;
+}
+
+
+.ctrl{
+	position: relative;
+	bottom: 170px;
+	left: 40px;
+	display: grid;
+	width: 150px;
+	grid-template-columns: 50px 50px 50px;
+	grid-template-rows: 50px 50px 50px;
+}
+
+.ctrl2{
+	position: relative;
+	bottom: 270px;
+	left: 95vh;
+	display: grid;
+	width: 150px;
+	grid-template-columns: 50px 50px 50px;
+	grid-template-rows: 50px 50px 50px;
+}
+
+.ctrl .ctrlbtn1{
+	position: absolute;
+	grid-row: 1/2;
+	grid-column: 3/2;
+}
+.ctrl .ctrlbtn2{
+	position: absolute;
+	grid-row: 2 / 3;
+	grid-column: 3/4;
+}
+.ctrl .ctrlbtn3{
+	position: absolute;
+	grid-row: 3 / 4;
+	grid-column: 2/3;
+}
+.ctrl .ctrlbtn4{
+	position: absolute;
+	grid-row: 2 / 3;
+	grid-column: 1 / 2;
+}
+
+.btnimg1 {
+	margin-bottom: 8px;
+	transform: rotate(0deg);
+}
+.btnimg2 {
+	margin-left: 8px;
+	transform: rotate(90deg);
+}
+.btnimg3 {
+	margin-top: 8px;
+	transform: rotate(180deg);
+}
+.btnimg4 {
+	margin-right: 8px;
+	transform: rotate(270deg);
+}
+
+.ctrl2 .ctrlbtn21{
+	position: absolute;
+right: 50px;
+}
+
+.ctrl2 .ctrlbtn22{
+position: absolute;
+right: 150px;
+}
+
+.ctrl2 .ctrlbtn23{
+	position: absolute;
+bottom: 250px;
+right: 50px;
+}
+
 
 .btn{
 	height: 60px;
@@ -20,7 +136,7 @@
 	width: 60%;
 }
 
-div * {
+.status * {
 	margin-left: 20px;
 	margin-right: 20px;
 	display: inline-block;
