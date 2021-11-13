@@ -359,7 +359,6 @@ if (cnt == 0) {
 			break;
 	}
 
-
 	var sctim = 0;
 	sctima();
 	function sctima() {
