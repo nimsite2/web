@@ -34,7 +34,6 @@
 	-webkit-user-select: auto;
 	user-select: auto;
 }
-
 .ctrlbtn:active{
 	background-color: #555;
 	font-weight: bold;
