@@ -135,18 +135,30 @@ right: 50px;
 
 
 .btn{
+	color: #445;
+	background: linear-gradient(60deg,#aef,#95a);
 	height: 60px;
 	width: 100%;
+	border-color: red;
+	border-radius: 90px 90px 90px 90px;
 }
 
 .sbtn{
+	color: #445;
+	background: linear-gradient(60deg,#aef,#95a);
 	height: 60px;
 	width: 80%;
+	border-color: red;
+	border-radius: 90px 90px 90px 90px;
 }
 
 .sel{
+	color: #445;
+	background: linear-gradient(60deg,#aef,#95a);
 	height: 60px;
 	width: 60%;
+	border-color: red;
+	border-radius: 90px 90px 90px 90px;
 }
 
 .status * {
