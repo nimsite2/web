@@ -467,7 +467,7 @@ if (inkey[37]) {x=x-xspeed;playerturn=1;}
 if (inkey[16]&&!ball&&power) {ballx=x;bally=y;ball=true;ballturn=playerturn}
 if (inkey[32]&&!jump) {vy=-0.5;jump=true;isjump=true}
 if (isjump&&inkey[32]&&vy>-(jumpheight)) {vy=vy-0.20} else {isjump=false}
-jump=true
+jump=true;
 
 //*debug*//
 if (inkey[17]){
