@@ -47,11 +47,11 @@ map = [
 	[00,00,11,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//01
 	[22,11,09,11,24,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//02
 	[22,22,22,22,22,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//03
-	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,22,22,22,22,22,22,05,05,65,05,05,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//04
-	[00,00,00,00,00,00,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,22,22,22,22,22,22,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//05
+	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,48,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,22,22,22,22,22,22,05,05,65,05,05,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//04
+	[00,00,00,00,00,00,05,05,00,00,00,49,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,22,22,22,22,22,22,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//05
 	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,00,00,00,00,00,00,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//06
 	[00,00,00,00,00,00,00,00,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,22,22,22,22,00,00,00,00,00,00,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//07
-	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24,37,00,00,00,00,00,00,00,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//08
+	[00,00,00,00,00,00,00,00,00,00,00,00,46,45,00,47,00,00,00,00,00,00,00,00,00,00,00,00,00,24,37,00,00,00,00,00,00,00,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//08
 	[00,00,00,00,00,00,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24,37,00,00,00,00,00,00,00,00,00,06,00,00,22,22,22,00,00,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//09
 	[00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,36,00,00,00,00,00,00,00,00,24,37,00,00,00,00,13,00,00,00,00,06,00,00,22,22,22,00,22,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,38,00,22],//10
 	[00,00,00,00,00,00,00,00,05,05,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,24,37,00,00,00,00,00,00,00,00,00,06,00,00,00,00,00,00,22,00,00,00,00,00,00,00,22,22,22,00,00,00,00,00,00,00,00,00,00,00,00,00,22],//11
@@ -292,6 +292,31 @@ var clifv = new Array();
 var clifs = new Array();
 /*lift*/
 
+/*enemy3*/
+var enemy31 = new Image();
+enemy31.src = "./obj/enemy31.png";
+var enemy32 = new Image();
+enemy32.src = "./obj/enemy32.png";
+var enemy33 = new Image();
+enemy33.src = "./obj/enemy33.png";
+var enemy34 = new Image();
+enemy34.src = "./obj/enemy34.png";
+var e3speed = new Array();
+var enemy3X = new Array();//
+var enemy3Y = new Array();//
+var enemy3turn = new Array();
+var enemy3turnY = new Array();
+var enemy3V = new Array();
+var cenemy3urn = new Array();
+var cenemy3urny = new Array();
+var enemy3XorY = new Array();
+var ce3xoy = new Array();
+var ce3x = new Array();
+var ce3y = new Array();
+var ce3v = new Array();
+var ce3s = new Array();
+/*enemy3*/
+
 
 
 //-----------------------------------------------------------------------------------------------//
@@ -340,25 +365,6 @@ if(time<=480) {setTimeout(start,5)}
 }
 }
 
-var ladderX = [];var ladderY = [];
-var bridgeX = [];var bridgeY = [];
-var spikeX = [];var spikeY = [];
-var blocksX = [];var blocksY = [];
-var slopeRX = [];var slopeRY = [];
-var slopeLX = [];var slopeLY = [];
-var waterX = [];var waterY = [];
-var sandX = [];var sandY = [];
-var jumperX = [];var jumperY = [];
-var keyX = [];var keyY = [];
-var keyBX = [];var keyBY = [];
-var cpX = [];var cpY = [];
-var powerX = [];var powerY = [];
-var depowerX = [];var depowerY = [];
-var goalX = [];var goalY = [];
-var liftblockX = [];var liftblockY = [];
-var liftYblockX = [];var liftYblockY = [];
-var liftblockBX = [];var liftblockBY = [];
-var liftYblockBX = [];var liftYblockBY = [];
 
 function upd(){
 if (once) {makemap(screen)}
@@ -371,6 +377,9 @@ if (once&&espawn) {
 	enemyX = [];enemyY = [];enemyturn = [];enemyjump = [];enemyV = [];
 	enemy2X = [];enemy2Y = [];enemy2turn = [];enemy2jump = [];enemy2V = [];
 	liftX = [];liftY = [];liftturn = [];liftV = [];
+	liftturn = [];liftXorY = [];
+	enemy3X = [];enemy3Y = [];enemy3turn = [];enemy3V = [];
+	enemy3turn = [];enemy3XorY = [];
 }
 ladderX = [];ladderY = [];
 bridgeX = [];bridgeY = [];
@@ -391,6 +400,10 @@ liftblockX = [];liftblockY = [];
 liftYblockX = [];liftYblockY = [];
 liftblockBX = [];liftblockBY = [];
 liftYblockBX = [];liftYblockBY = [];
+enemy3blockX = [];enemy3blockY = [];
+enemy3YblockX = [];enemy3YblockY = [];
+enemy3blockBX = [];enemy3blockBY = [];
+enemy3YblockBX = [];enemy3YblockBY = [];
 
 for (var my=0; my<mapl1.length; my++){for (var mx=0; mx<mapl1[my].length; mx++){
 /*dirt*/ if (mapl1[my][mx] === 1) {ctx.drawImage( mapl1chip, 0, 0, 32, 32, 32*mx, 32*my, 32, 32 )}
@@ -425,6 +438,11 @@ for (var my=0; my<map.length; my++){for (var mx=0; mx<map[my].length; mx++){
 /*liftYblock*/ if(map[my][mx] === 42) {liftYblockX.push(mx*32);liftYblockY.push(my*32)}
 /*liftblockB*/ if(map[my][mx] === 43) {liftblockBX.push(mx*32);liftblockBY.push(my*32)}
 /*liftYblockB*/ if(map[my][mx] === 44) {liftYblockBX.push(mx*32);liftYblockBY.push(my*32)}
+/*enemy3*/ 	if (map[my][mx] === 45&&once&&espawn) {enemy3X.push(mx*32);enemy3Y.push(my*32);enemy3turn.push(true);enemy3turnY.push(false);enemy3V.push(0);e3speed.push(2.0);enemy3XorY.push(true);}
+/*enemy3block*/ if(map[my][mx] === 46) {enemy3blockX.push(mx*32);enemy3blockY.push(my*32)}
+/*enemy3Yblock*/ if(map[my][mx] === 47) {enemy3YblockX.push(mx*32);enemy3YblockY.push(my*32)}
+/*enemy3blockB*/ if(map[my][mx] === 48) {enemy3blockBX.push(mx*32);enemy3blockBY.push(my*32)}
+/*enemy3YblockB*/ if(map[my][mx] === 49) {enemy3YblockBX.push(mx*32);enemy3YblockBY.push(my*32)}
 /*-cp-*/	if (map[my][mx] === 13) {ctx.drawImage( mapchip, 64, 32, 32, 32, 32*mx, 32*my, 32, 32 );cpX.push(mx*32);cpY.push(my*32)}
 /*slopeR*/ 	if (map[my][mx] === 14) {ctx.drawImage( mapchip, 128, 32, 32, 32, 32*mx, 32*my, 32, 32 );slopeRX.push(mx*32);slopeRY.push(my*32)}
 /*slopeL*/ 	if (map[my][mx] === 15) {ctx.drawImage( mapchip, 160, 32, 32, 32, 32*mx, 32*my, 32, 32 );slopeLX.push(mx*32);slopeLY.push(my*32)}
@@ -819,6 +837,77 @@ if (liftXorY[i]){
 }
 }
 /*lift-------------------------------------------------------------------------------------------*/
+
+/*enemy3*/
+for (var i=0;i<enemy3Y.length;i++) {
+if (x-960<enemy3X[i]&&x+960>enemy3X[i]) {
+if (!muteki) {
+	if (
+	y+hitboxY>enemy3Y[i]&&
+	y<enemy3Y[i]&&
+	x<enemy3X[i]+hitboxX-2&&
+	x>enemy3X[i]-hitboxX+2
+	) {game=0}
+	else if (
+	y>enemy3Y[i]&&
+	y-hitboxY<enemy3Y[i]&&
+	x<enemy3X[i]+hitboxX-2&&
+	x>enemy3X[i]-hitboxX+2
+	) {game=0}
+if (x>enemy3X[i]-hitboxX&&enemy3X[i]>x&&y>enemy3Y[i]-hitboxX&&enemy3Y[i]+hitboxX>y) {game=0}
+else if (x>enemy3X[i]&&enemy3X[i]+hitboxX>x&&y>enemy3Y[i]-hitboxX&&enemy3Y[i]+hitboxX>y) {game=0}
+}
+
+for (var j=0;j<enemy3blockY.length;j++) {
+	if (
+	enemy3Y[i]>enemy3blockY[j]&&
+	enemy3Y[i]-32<enemy3blockY[j]&&
+	enemy3X[i]<enemy3blockX[j]+32&&
+	enemy3X[i]>enemy3blockX[j]-32
+	) {enemy3turn[i]=true;enemy3XorY[i] = true;}
+if (enemy3X[i]>enemy3blockX[j]-32&&enemy3blockX[j]>enemy3X[i]&&enemy3Y[i]>enemy3blockY[j]-32&&enemy3blockY[j]+32>enemy3Y[i]) {enemy3turn[i]=true;enemy3XorY[i] = true;}
+else if (enemy3X[i]>enemy3blockX[j]&&enemy3blockX[j]+32>enemy3X[i]&&enemy3Y[i]>enemy3blockY[j]-32&&enemy3blockY[j]+32>enemy3Y[i]) {enemy3turn[i]=true;enemy3XorY[i] = true;}
+}
+for (var j=0;j<enemy3YblockY.length;j++) {
+	if (
+	enemy3Y[i]>enemy3YblockY[j]&&
+	enemy3Y[i]-32<enemy3YblockY[j]&&
+	enemy3X[i]<enemy3YblockX[j]+32&&
+	enemy3X[i]>enemy3YblockX[j]-32
+	) {enemy3turnY[i]=true;enemy3XorY[i] = false;}
+if (enemy3X[i]>enemy3YblockX[j]-32&&enemy3YblockX[j]>enemy3X[i]&&enemy3Y[i]>enemy3YblockY[j]-32&&enemy3YblockY[j]+32>enemy3Y[i]) {enemy3turnY[i]=true;enemy3XorY[i] = false;}
+else if (enemy3X[i]>enemy3YblockX[j]&&enemy3YblockX[j]+32>enemy3X[i]&&enemy3Y[i]>enemy3YblockY[j]-32&&enemy3YblockY[j]+32>enemy3Y[i]) {enemy3turnY[i]=true;enemy3XorY[i] = false;}
+}
+for (var j=0;j<enemy3blockBY.length;j++) {
+	if (
+	enemy3Y[i]>enemy3blockBY[j]&&
+	enemy3Y[i]-32<enemy3blockBY[j]&&
+	enemy3X[i]<enemy3blockBX[j]+32&&
+	enemy3X[i]>enemy3blockBX[j]-32
+	) {enemy3turn[i]=false;enemy3XorY[i] = true;}
+if (enemy3X[i]>enemy3blockBX[j]-32&&enemy3blockBX[j]>enemy3X[i]&&enemy3Y[i]>enemy3blockBY[j]-32&&enemy3blockBY[j]+32>enemy3Y[i]) {enemy3turn[i]=false;enemy3XorY[i] = true;}
+else if (enemy3X[i]>enemy3blockBX[j]&&enemy3blockBX[j]+32>enemy3X[i]&&enemy3Y[i]>enemy3blockBY[j]-32&&enemy3blockBY[j]+32>enemy3Y[i]) {enemy3turn[i]=false;enemy3XorY[i] = true;}
+}
+for (var j=0;j<enemy3YblockBY.length;j++) {
+	if (
+	enemy3Y[i]>enemy3YblockBY[j]&&
+	enemy3Y[i]-32<enemy3YblockBY[j]&&
+	enemy3X[i]<enemy3YblockBX[j]+32&&
+	enemy3X[i]>enemy3YblockBX[j]-32
+	) {enemy3turnY[i]=false;enemy3XorY[i] = false;}
+if (enemy3X[i]>enemy3YblockBX[j]-32&&enemy3YblockBX[j]>enemy3X[i]&&enemy3Y[i]>enemy3YblockBY[j]-32&&enemy3YblockBY[j]+32>enemy3Y[i]) {enemy3turnY[i]=false;enemy3XorY[i] = false;}
+else if (enemy3X[i]>enemy3YblockBX[j]&&enemy3YblockBX[j]+32>enemy3X[i]&&enemy3Y[i]>enemy3YblockBY[j]-32&&enemy3YblockBY[j]+32>enemy3Y[i]) {enemy3turnY[i]=false;enemy3XorY[i] = false;}
+}
+
+if (enemy3XorY[i]){
+ if (enemy3turn[i]) {enemy3X[i]=enemy3X[i]+e3speed[i];ctx.drawImage(enemy31, enemy3X[i], enemy3Y[i], 32, 32 );} else {enemy3X[i]=enemy3X[i]-e3speed[i];ctx.drawImage(enemy32, enemy3X[i], enemy3Y[i], 32, 32 );}
+} else if(!enemy3XorY[i]){
+ if (enemy3turnY[i]) {enemy3Y[i]=enemy3Y[i]-e3speed[i];ctx.drawImage(enemy33, enemy3X[i], enemy3Y[i], 32, 32 );} else {enemy3Y[i]=enemy3Y[i]+e3speed[i];ctx.drawImage(enemy34, enemy3X[i], enemy3Y[i], 32, 32 );} 
+}
+
+}
+}
+/*enemy3-------------------------------------------------------------------------------------------*/
 
 /*bridge*/
 for (var i=0;i<bridgeY.length;i++) {
