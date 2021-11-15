@@ -1,8 +1,8 @@
 #canvas{
 	background-image: url("title.png");
-	background-size: 160vh,80vh;
-	width: 160vh;
-	height: 80vh;
+	background-size: 120vh,60vh;
+	width: 120vh;
+	height: 60vh;
 	border-radius: 10px 10px 10px 10px;
 	border-color: red;
 	border-style: ridge;
@@ -10,8 +10,8 @@
 
 .cvs{
 	margin: 0 auto;
-	width: 160vh;
-	height: 80vh;
+	width: 120vh;
+	height: 60vh;
 }
 
 #controller {
