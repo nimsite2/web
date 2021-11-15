@@ -6,6 +6,7 @@ background1.src = "./obj/background1.png";
 /*bg*/
 
 /*Map*/
+var type=0
 var key=false;
 var ck = key;
 var map = new Array();
@@ -1037,8 +1038,12 @@ if (game==0&&!muteki) {loadcp();deathcnt++;document.getElementById("death").inne
 if (inkey[82]){var newframe=frame;if(newframe-oldframe>100){loadcp();oldframe=frame}}
 if (muteki&&game==0) {game=1}
 
-if (480<x&&x<map[0].length*32-480) {ctx.setTransform(1,0,0,1,-x+480,0)}
-if (x<480) {ctx.setTransform(1,0,0,1,0,0)}
+
+if (240>y&&type==1) {var trY = -y+240} else {var trY = 0}
+if(type==0&&y<0) {y=0;vy=0}
+
+if (480<x&&x<map[0].length*32-480) {ctx.setTransform(1,0,0,1,-x+480,trY)} else if (x<map[0].length*32-480){ctx.setTransform(1,0,0,1,map[0].length*32,trY)}
+if (x<480) {ctx.setTransform(1,0,0,1,0,trY)}
 if (0>x) {x=0}
 if (map[0].length*32-32<x) {x=map[0].length*32-32}
 
