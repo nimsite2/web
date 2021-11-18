@@ -24,6 +24,22 @@ function twop() {
 	if (!battle) {battle=true} else {battle=false}
 }
 
+function count() {
+var redc = 0;
+var limec = 0;
+for (var i=0;i<w;i++){
+	for (var j=0;j<h;j++) {
+		var blocks = document.getElementById(i+":"+j)
+		if (blocks.style.backgroundColor == "red") {
+			redc++
+		}else if (blocks.style.backgroundColor == "lime"){
+			limec++
+		}
+}
+}
+document.getElementById("redVSlime").innerHTML = "[RED:"+redc+"][LIME:"+limec+"]"
+}
+
 
 
 var seru = document.getElementsByTagName('th');
