@@ -1,17 +1,19 @@
-th {
+th{
 	background-color: black;
-	border-radius: 2px;
-	width: 3vh;
-	height: 3vh;
-
+	border:1px dotted #444;
+	padding: 0px;
 }
 
 table {
+	border-collapse: separate;
+	border-spacing: 0px;
+	table-layout:fixed;
 	user-drag: none;
 	-webkit-user-drag: none;
 	-moz-user-select: none;
-	background-color: gray;
+	background-color: black;
 	border-radius: 1px;
+	width: 100px;
 }
 
 .btn * {

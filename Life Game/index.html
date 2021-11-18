@@ -8,6 +8,7 @@
 	<script type="text/javascript">
 		var w = parseInt(getParam('w'))
 		var h = parseInt(getParam('h'))
+		var px = parseInt(getParam('px'))
 	function getParam(name, url) {
 	if (!url) url = window.location.href;
 	name = name.replace(/[\[\]]/g, "\\$&");
@@ -22,6 +23,7 @@
 <body bgcolor="black">
 <input type="text" id="width" >
 <input type="text" id="height" >
+<input type="text" id="px" >
 <input type="button" onclick="chli()" value="変更" >
 <table>
 	<script>for (var i=0;i<w;i++) {document.write("<tr>");for (var j=0;j<h;j++){document.write("<th id="+i+":"+j+" onclick='tclick("+i+","+j+")' onmouseover='if (inmou) {tclick("+i+","+j+")};'></th>")};document.write("</tr>")}</script>
@@ -29,7 +31,9 @@
 <div class="btn">
 <input type="button" onclick="start();" value="一回動かす">
 <input type="button" onclick="looptime();" id="moveloop" value="動かす">
-<input type="button" onclick="clearlife();" id="moveloop" value="クリア">
+<input type="button" onclick="clearlife();" value="クリア">
+<input type="button" onclick="chcolor();" id="color" value="色">
+<input type="checkbox" onchange="twop();" id="twop"><label>対戦</label>
 </div>
 <script type="text/javascript" src="main.js"></script>
 </body>
