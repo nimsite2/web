@@ -138,10 +138,13 @@ for (var i=0;i<sni.length;i++){
 	var blocks = document.getElementById(sni[i]+":"+snj[i])
 	blocks.style.backgroundColor = "black"
 }
-if(battle){chcolor()};
-if (loop) {setTimeout(start,50)}
+if (battle&&loop) {
+	chcolor()
+	setTimeout(start,25)
+}else if (loop) {
+	setTimeout(start, 50)
 }
-
+}
 var loop=false
 function looptime() {
 	randc = Math.floor(Math.random()*2);
