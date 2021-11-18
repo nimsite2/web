@@ -10,7 +10,9 @@ function chli() {
 	px = document.getElementById("px").value
 	window.location.href = 'index.html?w='+w+'&h='+h+'&px='+px;
 }
-var color = "lime"
+var colorlist = ["lime","red"]
+var randc = Math.floor(Math.random()*2);
+var color = colorlist[randc]
 document.getElementById("color").style.backgroundColor = color
 function chcolor() {
 	if (color=="lime") {color="red"} else {color = "lime"}
@@ -138,6 +140,8 @@ if (loop) {setTimeout(start,50)}
 
 var loop=false
 function looptime() {
+	randc = Math.floor(Math.random()*2);
+	color = colorlist[randc]
 	if (!loop) {loop=true;start();} else {loop=false}
 	var text = document.getElementById("moveloop")
 	if (loop) {text.value = "とめる"}
