@@ -13,7 +13,11 @@ function chli() {
 var colorlist = ["lime","red"]
 var randc = Math.floor(Math.random()*2);
 var color = colorlist[randc]
+
+
 document.getElementById("color").style.backgroundColor = color
+
+
 function chcolor() {
 	if (color=="lime") {color="red"} else {color = "lime"}
 	document.getElementById("color").style.backgroundColor = color
