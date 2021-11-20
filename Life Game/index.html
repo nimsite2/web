@@ -25,6 +25,7 @@
 <label>高さ</label><input type="text" id="height">
 <label>大きさ</label><input type="text" id="px">
 <input type="button" onclick="chli()" value="変更" >
+<input type="range" onchange="chpx(this.value)" min="0" max="100" step="1" id="chpx">
 <table>
 	<script>for (var i=0;i<h;i++) {document.write("<tr>");for (var j=0;j<w;j++){document.write("<th id="+i+":"+j+" onclick='tclick("+i+","+j+")' onmouseover='if (inmou) {tclick("+i+","+j+")};' style='");if(j%5==4&&j!=w-1){document.write("border-right-color:#6669;")};if(j%5==0&&j!=0){document.write("border-left-color:#6669;")};if(i%5==4&&i!=h-1){document.write("border-bottom-color:#6669;")};if(i%5==0&&i!=0){document.write("border-top-color:#6669;")};document.write("'></th>")};document.write("</tr>")}</script>
 </table>
@@ -37,7 +38,6 @@
 </div>
 <input type="checkbox" onchange="twop();" id="twop"><label>対戦</label>
 <input type="checkbox" onchange="tpc();" id="tpc"><label>上下左右つなげる</label>
-<input type="range" onchange="chpx(this.value)" min="0" max="100" step="1" id="chpx">
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
