@@ -9,6 +9,7 @@
 		var w = parseInt(getParam('w'))
 		var h = parseInt(getParam('h'))
 		var px = parseInt(getParam('px'))
+		if(isNaN(w&&h&&px)){w=40;h=20;px=15}
 	function getParam(name, url) {
 	if (!url) url = window.location.href;
 	name = name.replace(/[\[\]]/g, "\\$&");
@@ -21,23 +22,28 @@
 	</script>
 </head>
 <body bgcolor="black" text="#0f0">
+<div class="text">
 <label>幅</label><input type="text" id="width">
 <label>高さ</label><input type="text" id="height">
 <label>大きさ</label><input type="text" id="px">
-<input type="button" onclick="chli()" value="変更" >
-<input type="range" onchange="chpx(this.value)" min="0" max="100" step="1" id="chpx">
+<input class="sl" type="range" onchange="chpx(this.value)" min="0" max="100" step="1" id="chpx">
+<input class="ch" type="button" onclick="chli()" value="変更" >
+</div>
+
+
 <table>
 	<script>for (var i=0;i<h;i++) {document.write("<tr>");for (var j=0;j<w;j++){document.write("<th id="+i+":"+j+" onclick='tclick("+i+","+j+")' onmouseover='if (inmou) {tclick("+i+","+j+")};' style='");if(j%5==4&&j!=w-1){document.write("border-right-color:#6669;")};if(j%5==0&&j!=0){document.write("border-left-color:#6669;")};if(i%5==4&&i!=h-1){document.write("border-bottom-color:#6669;")};if(i%5==0&&i!=0){document.write("border-top-color:#6669;")};document.write("'></th>")};document.write("</tr>")}</script>
 </table>
-<div class="btn">
-<input type="button" onclick="start();" value="一回動かす">
-<input type="button" onclick="looptime();" id="moveloop" value="動かす">
-<input type="button" onclick="clearlife();" value="クリア">
-<input type="button" onclick="chcolor();" id="color" value="色">
+
+
+<input type="button" onclick="start();" value="O : 一回動かす">
+<input type="button" onclick="looptime();" id="moveloop" value="L : 動かす">
+<input type="button" onclick="clearlife();" value="C : クリア">
+<input type="button" onclick="chcolor();" id="color" value="T : 色">
 <input type="button" onclick="countstart();" id="counter" value="集計"><label style="color: lime;" id="redVSlime"></label>
-</div>
-<input type="checkbox" onchange="twop();" id="twop"><label>対戦</label>
-<input type="checkbox" onchange="tpc();" id="tpc"><label>上下左右つなげる</label>
+<br>
+<input type="checkbox" onchange="twop();" id="twop"><label style="font-size:30px;">対戦</label>
+<input type="checkbox" onchange="tpc();" id="tpc"><label style="font-size:30px;">上下左右つなげる</label>
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

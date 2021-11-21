@@ -14,10 +14,70 @@ table {
 	background-color: black;
 	border:2px solid #444;
 	border-radius: 1px;
-	width: 0px;
+	width: 0;
 }
 
-.btn * {
-	width: 20%;
-	height: 60px;
+input[type="button"]{
+	cursor: pointer;
+	color: white;
+	margin-top: 10px;
+	width: 10%;
+	height: 30px;
+	border-radius: 10px;
+	border: 3px solid #444;
+	background: none;
 }
+
+input[type="checkbox"]{
+	cursor: pointer;
+	margin-top: 10px;
+	width: 30px;
+	height: 30px;
+}
+
+label {
+	color: #707;
+}
+
+.text{
+	margin-bottom: 10px;
+}
+
+.text input:not(.sl):not(.ch){
+	margin-left: 10px;
+	color: red;
+	background: none;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-bottom: 1px solid #00f;
+	outline: none;
+}
+
+.text input:focus:not(.sl):not(.ch){
+	margin-left: 10px;
+	color: red;
+	background: none;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-bottom: 1px solid #0ef;
+	outline: none;
+}
+
+.ch{
+	color: #00e;
+	background: none;
+	border-radius: 0px;
+	border: 1px solid #0f0;
+}
+
+.sl {
+	appearance: none;
+	outline: none;
+	border: 2px solid #f00;
+	border-radius: 10px;
+	background: none;
+}
+
+

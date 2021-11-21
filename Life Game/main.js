@@ -1,7 +1,7 @@
 window.addEventListener("keydown", keyd)
 window.addEventListener("keyup", keyu)
 var inkey = new Array();
-function keyd(e) {inkey[e.keyCode] = true;if (inkey[76]) {looptime()};if (inkey[79]) {start()};if (inkey[67]) {clearlife()};if (inkey[84]) {chcolor()}}
+function keyd(e) {inkey[e.keyCode] = true;if (inkey[76]) {looptime()};if (inkey[79]) {start()};if (inkey[67]) {clearlife()};if (inkey[84]) {chcolor()};if (inkey[74]) {chpx(px--)};if (inkey[75]) {chpx(px++)}}
 function keyu(e) {inkey[e.keyCode] = false}
 
 document.getElementById("width").value = w;
@@ -37,11 +37,6 @@ function twop() {
 }
 
 
-
-
-
-
-
 var counter = false;
 function countstart() {
 if (counter) {counter=false} else {counter=true}
@@ -66,8 +61,8 @@ for (var i=0;i<h;i++){
 		}
 }
 }
-document.getElementById("redVSlime").innerHTML = "[RED:"+redc+"][LIME:"+limec+"][BLUE:"+bluec+"]"
-if (counter) {document.getElementById("counter").style.color = "red"} else {document.getElementById("counter").style.color = "black"}
+document.getElementById("redVSlime").innerHTML = "<font color='red'>[RED:"+redc+"]</font><font color='lime'>[LIME:"+limec+"]</font><font color='blue'>[BLUE:"+bluec+"]</font>"
+if (counter) {document.getElementById("counter").style.color = "red"} else {document.getElementById("counter").style.color = "white";document.getElementById("redVSlime").innerHTML = "";}
 if (counter) {setTimeout(count,100)}
 }
 
@@ -76,6 +71,7 @@ if (counter) {setTimeout(count,100)}
 var seru = document.getElementsByTagName('th');
 function chpx(px){
 document.getElementById("px").value = px;
+document.getElementById("chpx").value = px;
 for (var i=0;i<seru.length;i++){
 seru[i].style.width = px+'px';
 seru[i].style.height= px+'px';
