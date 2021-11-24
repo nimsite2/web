@@ -1,0 +1,10 @@
+#cvs {
+	background-color: #000;
+	border: 32px solid #444;
+	border-radius: 10px;
+}
+
+#startbtn{
+	height: 60px;
+	width: 100%;
+}
