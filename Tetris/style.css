@@ -1,10 +1,35 @@
 #cvs {
+	width: 40vh;
+	height: 80vh;
 	background-color: #000;
 	border: 32px solid #444;
 	border-radius: 10px;
+	padding: none;
+}
+#cvs2 {
+	width: 20vh;
+	height: 80vh;
+	background-color: #000;
+	border: 32px solid #444;
+	border-left: none;
+	border-radius: 0px 10px 10px 0px;
+	padding: none;
 }
 
 #startbtn{
-	height: 60px;
+	position: absolute;
+	top: 25%;
+	left: 0;
+	right: 0;
+	height: 50%;
 	width: 100%;
+	border-top: 3px solid #0998;
+	border-bottom: 3px solid #0998;
+	background-color: #0998;
+	background-image:url("Start.png");
+	opacity: 0.8;
+	display:block;
+	background-repeat: no-repeat;
+	background-position:50% 50%;
 }
+

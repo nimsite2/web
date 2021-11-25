@@ -1,23 +1,26 @@
 var cvs = document.getElementById("cvs")
 var ctx = cvs.getContext("2d")
-var w=11;
-var h=17;
+var cvs2 = document.getElementById("cvs2")
+var ctx2 = cvs2.getContext("2d")
+var w=10;
+var h=20;
 cvs.width=w*32
 cvs.height=h*32
+cvs2.width=w*32/2
+cvs2.height=h*32
 
 window.addEventListener("keydown", keyd)
 window.addEventListener("keyup", keyu)
 var inkey = new Array();
-function keyd(e) {inkey[e.keyCode] = true}
+function keyd(e) {inkey[e.keyCode] = true;if (inkey[37]&&movecheck(-1,0)){mino.x--}
+if (inkey[39]&&movecheck(1,0)){mino.x++}
+if (inkey[40]&&movecheck(0,1)){mino.y++}}
 function keyu(e) {inkey[e.keyCode] = false}
 
-var score = document.getElementById("score")
 
 var gameover = false;
 var once = true;
 var frame = 0;
-var keyoldframe = 0;
-var keycooltime = 25;
 var turnkeyoldframe = 0;
 var turnkeycooltime = 25;
 
@@ -25,16 +28,20 @@ var downkeyoldframe = 0;
 var downkeycooltime = 30;
 
 var downoldframe = 0;
-var downcooltime = 40;
+var downcooltime = 20;
+
+var lines =0;
+var lc=0;
+var score =0;
 
 class mino{constructor(x,y){this.x=x;this.y=y;}}
 
 var minocolorlist = ["black","red","lime","purple","yellow","blue","orange","skyblue","gray"]
 var minocolor = minocolorlist[0]
 var minos = new Array()
-var rand = Math.floor(Math.random()*7)+1;
+var rand = Math.floor(Math.random()*7);
 function spawnmino(rand){
-downcooltime=40
+downcooltime=20
 mino.x = 4;mino.y = -1;
 minocolor = minocolorlist[rand+1]
 if (rand==0){
@@ -135,16 +142,14 @@ return newmino
 }
 
 function checkline(){
-var lc=0;
 for (var i=0;i<field.length;i++){var fl = true;for (var j=0;j<field[i].length;j++){
 if (!field[i][j]){fl=false;break;}
 }
 if(fl){
-lc++;
-for (var ni = i;ni>0;ni--){for (nj=0;nj<w-1;nj++){
+for (var ni = i;ni>0;ni--){for (nj=0;nj<w;nj++){
 field[ni][nj] = field[ni-1][nj]
 }}
-
+lc++;
 }
 }
 }
@@ -164,21 +169,46 @@ ctx.clearRect(0,0,w*32,h*32)
 drawfield()
 
 
-if (inkey[37]&&keyoldframe+keycooltime<frame&&movecheck(-1,0)){mino.x--;keyoldframe=frame}
-if (inkey[39]&&keyoldframe+keycooltime<frame&&movecheck(1,0)){mino.x++;keyoldframe=frame}
-if (inkey[40]&&keyoldframe+keycooltime<frame&&movecheck(0,1)){mino.y++;keyoldframe=frame}
-if (inkey[32]&&downkeyoldframe+downkeycooltime<frame){downcooltime=0;downkeyoldframe=frame}
+
+if (inkey[32]&&downkeyoldframe+downkeycooltime<frame&&downcooltime!=0){downcooltime=0;downkeyoldframe=frame}
 if (inkey[38]&&turnkeyoldframe+turnkeycooltime<frame){newminos=turnmino();if (movecheck(0,0,newminos)){minos=newminos};turnkeyoldframe=frame}
 
 
 
 if (downoldframe+downcooltime<frame&&movecheck(0,1)){mino.y++;downoldframe=frame}else if (downoldframe+downcooltime<frame){if (!movecheck(0,0)){gameover=true;}fixfield();rand=Math.floor(Math.random()*7);spawnmino(rand)}
+if (lc>0){
+	ctx2.clearRect(0,0,w*32/2,h*32)
+	lines+=lc;
+	ctx2.fillText("Line:"+lines, 0, 128);
+	if(lc==1){score+=100};if(lc==2){score+=300};if(lc==3){score+=500};if(lc==4){score+=800};
+	ctx2.fillText("Score:"+score, 0, 160);
+	lc=0}
+
 drawmino()
 frame++
-if (!gameover){window.requestAnimationFrame(mainloop)}
-else {score.innerHTML = "GameOver"}
+if (!gameover){setTimeout(mainloop,10)}
+else {ctx.font = "bold 50px ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
 }
-if (once) {mainloop()}
+if (once) {starttimer();mainloop();
+	ctx2.font = "bold 20px ''";
+	ctx2.fillStyle = "white";
+	ctx2.fillText("Line:0", 0, 128);
+	ctx2.fillText("Score:"+score, 0, 160);
+}
 once = false;
 document.getElementById("startbtn").remove()
+}
+
+function starttimer() {
+		var oldtime = new Date();
+	function s1(){
+		if (!gameover){
+		var newtime = new Date();
+		time = (newtime.getTime() - oldtime.getTime())/1000
+		ctx2.clearRect(0,160,w*32/2,33)
+		ctx2.fillText("time["+time+"]",0,192);
+		setTimeout(s1,10)
+	}
+	}
+	s1();
 }
