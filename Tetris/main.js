@@ -40,6 +40,7 @@ var minocolorlist = ["black","red","lime","purple","yellow","blue","orange","sky
 var minocolor = minocolorlist[0]
 var minos = new Array()
 var rand = Math.floor(Math.random()*7);
+var nextrand = Math.floor(Math.random()*7);
 function spawnmino(rand){
 downcooltime=20
 mino.x = 4;mino.y = -1;
@@ -96,6 +97,61 @@ minos = [
 }
 }
 spawnmino(rand)
+var nextminos = new Array()
+var nextminocolor = 0;
+function spawnnextmino(rand){
+nextminocolor = minocolorlist[nextrand+1]
+if (rand==0){
+nextminos = [
+[0,0,0,0],
+[0,1,1,0],
+[0,0,1,1],
+[0,0,0,0],
+]
+} else if (rand==1){
+nextminos = [
+[0,0,0,0],
+[0,0,1,1],
+[0,1,1,0],
+[0,0,0,0],
+]
+} else if (rand==2){
+nextminos = [
+[0,0,0,0],
+[0,1,1,0],
+[0,1,1,0],
+[0,0,0,0],
+]
+} else if (rand==3){
+nextminos = [
+[0,0,0,0],
+[1,1,1,1],
+[0,0,0,0],
+[0,0,0,0],
+]
+} else if (rand==4){
+nextminos = [
+[0,0,0,0],
+[0,0,1,0],
+[0,1,1,1],
+[0,0,0,0],
+]
+} else if (rand==5){
+nextminos = [
+[0,0,0,0],
+[0,0,0,1],
+[0,1,1,1],
+[0,0,0,0],
+]
+} else if (rand==6){
+nextminos = [
+[0,0,0,0],
+[0,1,0,0],
+[0,1,1,1],
+[0,0,0,0],
+]
+}
+}
 
 var field = new Array()
 for (var i=0;i<h;i++){
@@ -116,6 +172,15 @@ function drawmino() {
 for (var i=0;i<minos.length;i++){for (var j=0;j<minos[i].length;j++){if (minos[i][j]){
 ctx.fillStyle = minocolor;ctx.strokestyle = "gray";
 ctx.fillRect(j*32+mino.x*32,i*32+mino.y*32,32,32);ctx.strokeRect(j*32+mino.x*32,i*32+mino.y*32,32,32)
+}}}
+}
+
+function drawnextmino() {
+ctx2.clearRect(0,0,w*32/2,96)
+for (var i=0;i<nextminos.length;i++){for (var j=0;j<nextminos[i].length;j++){if (nextminos[i][j]){
+ctx2.fillStyle = nextminocolor;ctx2.strokestyle = "gray";
+ctx2.fillRect(j*32,i*32,32,32);ctx2.strokeRect(j*32,i*32,32,32)
+ctx2.fillStyle = "white";
 }}}
 }
 
@@ -175,9 +240,9 @@ if (inkey[38]&&turnkeyoldframe+turnkeycooltime<frame){newminos=turnmino();if (mo
 
 
 
-if (downoldframe+downcooltime<frame&&movecheck(0,1)){mino.y++;downoldframe=frame}else if (downoldframe+downcooltime<frame){if (!movecheck(0,0)){gameover=true;}fixfield();rand=Math.floor(Math.random()*7);spawnmino(rand)}
+if (downoldframe+downcooltime<frame&&movecheck(0,1)){mino.y++;downoldframe=frame}else if (downoldframe+downcooltime<frame){if (!movecheck(0,0)){gameover=true;}fixfield();ctx2.clearRect(0,0,w*32/2,33);rand=nextrand;nextrand = Math.floor(Math.random()*7);spawnnextmino(nextrand);drawnextmino();spawnmino(rand)}
 if (lc>0){
-	ctx2.clearRect(0,0,w*32/2,h*32)
+	ctx2.clearRect(0,96,w*32/2,h*32)
 	lines+=lc;
 	ctx2.fillText("Line:"+lines, 0, 128);
 	if(lc==1){score+=100};if(lc==2){score+=300};if(lc==3){score+=500};if(lc==4){score+=800};
@@ -189,9 +254,12 @@ frame++
 if (!gameover){setTimeout(mainloop,10)}
 else {ctx.font = "bold 50px ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
 }
-if (once) {starttimer();mainloop();
+if (once) {
+	starttimer();mainloop();
+	nextrand = Math.floor(Math.random()*7);
 	ctx2.font = "bold 20px ''";
 	ctx2.fillStyle = "white";
+	spawnnextmino(nextrand);drawnextmino();
 	ctx2.fillText("Line:0", 0, 128);
 	ctx2.fillText("Score:"+score, 0, 160);
 }
