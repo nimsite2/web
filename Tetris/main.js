@@ -41,116 +41,48 @@ var minocolor = minocolorlist[0]
 var minos = new Array()
 var rand = Math.floor(Math.random()*7);
 var nextrand = Math.floor(Math.random()*7);
+var minolist = [[
+[0,0,0,0],
+[0,1,1,0],
+[0,0,1,1],
+[0,0,0,0]],[
+[0,0,0,0],
+[0,0,1,1],
+[0,1,1,0],
+[0,0,0,0]],[
+[0,0,0,0],
+[0,1,1,0],
+[0,1,1,0],
+[0,0,0,0]],[
+[0,0,0,0],
+[1,1,1,1],
+[0,0,0,0],
+[0,0,0,0]],[
+[0,0,0,0],
+[0,0,1,0],
+[0,1,1,1],
+[0,0,0,0]],[
+[0,0,0,0],
+[0,0,0,1],
+[0,1,1,1],
+[0,0,0,0]],[
+[0,0,0,0],
+[0,1,0,0],
+[0,1,1,1],
+[0,0,0,0]]
+]
 function spawnmino(rand){
 downcooltime=20
 mino.x = 4;mino.y = -1;
 minocolor = minocolorlist[rand+1]
-if (rand==0){
-minos = [
-[0,0,0,0],
-[0,1,1,0],
-[0,0,1,1],
-[0,0,0,0],
-]
-} else if (rand==1){
-minos = [
-[0,0,0,0],
-[0,0,1,1],
-[0,1,1,0],
-[0,0,0,0],
-]
-} else if (rand==2){
-minos = [
-[0,0,0,0],
-[0,1,1,0],
-[0,1,1,0],
-[0,0,0,0],
-]
-} else if (rand==3){
-minos = [
-[0,0,0,0],
-[1,1,1,1],
-[0,0,0,0],
-[0,0,0,0],
-]
-} else if (rand==4){
-minos = [
-[0,0,0,0],
-[0,0,1,0],
-[0,1,1,1],
-[0,0,0,0],
-]
-} else if (rand==5){
-minos = [
-[0,0,0,0],
-[0,0,0,1],
-[0,1,1,1],
-[0,0,0,0],
-]
-} else if (rand==6){
-minos = [
-[0,0,0,0],
-[0,1,0,0],
-[0,1,1,1],
-[0,0,0,0],
-]
-}
+minos = minolist[rand]
 }
 spawnmino(rand)
 var nextminos = new Array()
 var nextminocolor = 0;
 function spawnnextmino(rand){
 nextminocolor = minocolorlist[nextrand+1]
-if (rand==0){
-nextminos = [
-[0,0,0,0],
-[0,1,1,0],
-[0,0,1,1],
-[0,0,0,0],
-]
-} else if (rand==1){
-nextminos = [
-[0,0,0,0],
-[0,0,1,1],
-[0,1,1,0],
-[0,0,0,0],
-]
-} else if (rand==2){
-nextminos = [
-[0,0,0,0],
-[0,1,1,0],
-[0,1,1,0],
-[0,0,0,0],
-]
-} else if (rand==3){
-nextminos = [
-[0,0,0,0],
-[1,1,1,1],
-[0,0,0,0],
-[0,0,0,0],
-]
-} else if (rand==4){
-nextminos = [
-[0,0,0,0],
-[0,0,1,0],
-[0,1,1,1],
-[0,0,0,0],
-]
-} else if (rand==5){
-nextminos = [
-[0,0,0,0],
-[0,0,0,1],
-[0,1,1,1],
-[0,0,0,0],
-]
-} else if (rand==6){
-nextminos = [
-[0,0,0,0],
-[0,1,0,0],
-[0,1,1,1],
-[0,0,0,0],
-]
-}
+nextminos = minolist[rand]
 }
 
 var field = new Array()
