@@ -184,7 +184,7 @@ if (lc>0){
 drawmino()
 frame++
 if (!gameover){setTimeout(mainloop,10)}
-else {ctx.font = "bold 400% ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
+else {ctx.font = "bold 200% ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
 }
 if (once) {
 	starttimer();mainloop();
