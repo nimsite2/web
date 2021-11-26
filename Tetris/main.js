@@ -184,12 +184,12 @@ if (lc>0){
 drawmino()
 frame++
 if (!gameover){setTimeout(mainloop,10)}
-else {ctx.font = "bold 50px ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
+else {ctx.font = "bold 400% ''";ctx.fillStyle = "white";ctx.fillText("GameOver!", 32, h/2*32)}
 }
 if (once) {
 	starttimer();mainloop();
 	nextrand = Math.floor(Math.random()*7);
-	ctx2.font = "bold 20px ''";
+	ctx2.font = "bold 100% ''";
 	ctx2.fillStyle = "white";
 	spawnnextmino(nextrand);drawnextmino();
 	ctx2.fillText("Line:0", 0, 128);
@@ -205,7 +205,7 @@ function starttimer() {
 		if (!gameover){
 		var newtime = new Date();
 		time = (newtime.getTime() - oldtime.getTime())/1000
-		ctx2.clearRect(0,160,w*32/2,33)
+		ctx2.clearRect(0,160,w*32/2,35)
 		ctx2.fillText("time["+time+"]",0,192);
 		setTimeout(s1,10)
 	}
