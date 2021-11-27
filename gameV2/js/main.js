@@ -1198,8 +1198,8 @@ once=false;
 spawn=false;
 espawn=false;
 
-if (y>480&&screen!=4) {game=0;} else if (y>480-32) {y=0}
-if(y<0&&screen!=4) {y=0;vy=0} else if (y<0) {y=480-32}
+if (y>480&&screen!=4) {game=0;} else if (y>480-32&&screen==4) {y=0}
+if(y<0&&screen!=4) {y=0;vy=0} else if (y<0&&screen==4) {y=480-32}
 
 if (game==0&&!muteki) {loadcp();deathcnt++;document.getElementById("death").innerHTML = "death:"+deathcnt}
 if (inkey[82]){var newframe=frame;if(newframe-oldframe>100){loadcp();oldframe=frame}}
