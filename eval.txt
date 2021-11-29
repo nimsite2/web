@@ -1,0 +1,91 @@
+let x = "1-9"
+
+function flo(int:any){return parseFloat(int)}
+function log(str:any){console.log(str)}
+
+function meval(data:string){
+function ceval(data:string){
+let newdata = data.split('')
+for(let i=0;i<newdata.length-1;i++){
+    if(isNaN(flo(newdata[i]))&&newdata[i]!='.'){
+        newdata[i-1]+=',';
+        newdata[i]+=',';
+    }
+}
+newdata = newdata.join("").split(",")
+while(newdata.length>1){
+    for(let i=0;i<newdata.length-1;i++){
+        if(newdata[i]=='/'){
+            newdata[i]=''+(flo(newdata[i-1])/flo(newdata[i+1]));
+            newdata.splice(i-1,1);newdata.splice(i,1);
+        }
+    }
+    for(let i=0;i<newdata.length-1;i++){
+        if(newdata[i]=='*'){
+            newdata[i]=''+(flo(newdata[i-1])*flo(newdata[i+1]));
+            newdata.splice(i-1,1);newdata.splice(i,1);
+        }
+    }
+    for(let i=0;i<newdata.length-1;i++){
+        if (newdata[i]=='-'){
+            newdata[i]=''+(flo(newdata[i-1])-flo(newdata[i+1]));
+            newdata.splice(i-1,1);newdata.splice(i,1)
+        }
+        if(newdata[i]=='+'){
+            newdata[i]=''+(flo(newdata[i-1])+flo(newdata[i+1]));
+            newdata.splice(i-1,1);newdata.splice(i,1);
+        }
+    }
+}
+return newdata
+}
+
+let A = ceval(data)
+return A
+}
+
+log(meval(x))
+
+
+
+
+
+
+
+
+
+let y = '(aaa(bb(cc)bb)aaa)'
+
+log(y)
+function peval(data:string){
+    let newdata = data.split('')
+    let pscnt = 0;
+    let pcnt = 0;
+    for(let i=0;i<newdata.length;i++){
+        if(newdata[i]=='('){
+            pcnt++
+            pscnt++
+            newdata[i]='('+pscnt+']'
+        }
+        if (newdata[i] == ')') {
+            pscnt--
+            newdata[i]=')'+flo(pscnt+1)+']'
+        }
+    }
+    data = newdata.join('')
+    for(let i=pcnt;i>0;i--){
+        let start = data.indexOf('('+i+']')
+        let end = data.indexOf(')'+i+']')
+        data = data.replace(data.substr(start,end - start +3),ceval2(data.substr(start+3,end-start- 3)))
+    }
+    return data
+}
+
+function ceval2(data:string){
+    data+='x'
+    return data
+}
+
+
+log(peval(y))
+
