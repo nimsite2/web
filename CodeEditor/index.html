@@ -13,8 +13,9 @@
 <center>
 <button style="width: 80%;font-size: 40px;color: red;background: none;border-radius:10px;border: 3px solid red;margin:20px;" onclick="this.innerHTML='OK';document.getElementById('text').select();document.execCommand('copy');">Copy</button>
 <br>
-<label style="color:red;">Background</label><input style="background:none;border:1px solid white;" type="color" value="#000000" onchange="background=this.value;spawn()">
-<label style="color:red;">Foreground</label><input style="background:none;border:1px solid white;" type="color" value="#00ff00" onchange="foreground=this.value;spawn()">
+<label style="margin-right: 10px;color:red;">Background</label><label style="margin-left: 10px;color:red;">Foreground</label><br>
+<input style="margin-right: 10px;background-color:gray;border:1px solid white;" type="color" value="#000000" onchange="background=this.value;spawn()">
+<input style="margin-left: 10px;background-color:gray;border:1px solid white;" type="color" value="#00ff00" onchange="foreground=this.value;spawn()">
 </center>
 <script type="text/javascript">
 var background = document.getElementsByTagName("input")[1].value
