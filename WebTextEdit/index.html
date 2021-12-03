@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WebTextEdit</title>
+	<link rel="icon" href="favicon.ico">
+</head>
+<body bgcolor="black">
+<center><h1 style="font-size:100px;color:blue;"><pre>WebTextEdit</pre></h1>
+<input style="outline: none;background:none;color:yellow;border: 2px solid blue;width: 90%;" type="text" id="text" value="">
+<button style="width: 80%;font-size: 40px;color: blue;background: none;border-radius:10px;border: 3px solid blue;margin:20px;" onclick="this.innerHTML='OK';document.getElementById('text').select();document.execCommand('copy');">Copy</button>
+<br>
+</center>
+<script type="text/javascript">
+var url;
+function spawn(){
+url=`if(document.getElementsByTagName("html")[0].getAttribute("contenteditable")==undefined||document.getElementsByTagName("html")[0].getAttribute("contenteditable")=="false"){document.getElementsByTagName("html")[0].setAttribute("contenteditable","true")}else{document.getElementsByTagName("html")[0].setAttribute("contenteditable","false")}`
+document.getElementById("text").value="javascript:"+url
+}
+spawn()
+</script>
+</body>
+</html>
