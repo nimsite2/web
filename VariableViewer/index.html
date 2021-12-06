@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VariableViewer</title>
+	<link rel="icon" href="favicon.ico">
+</head>
+<body bgcolor="black">
+<center><h1 style="font-size:100px;color:magenta;"><pre>VariableViewer</pre></h1>
+<input style="outline: none;background:none;color:aqua;border: 2px solid magenta;width: 90%;" type="text" id="text" value="">
+<button style="width: 80%;font-size: 40px;color: magenta;background: none;border-radius:10px;border: 3px solid magenta;margin:20px;" onclick="this.innerHTML='OK';document.getElementById('text').select();document.execCommand('copy');">Copy</button>
+<br>
+</center>
+<script type="text/javascript">
+var url;
+function spawn(){
+url=`{let search;let string;let number;let boolean;let array;let undef;let func;let nul;let object;for(let i in window) {if(window.hasOwnProperty(i)&&Array.isArray(window[i])){if(window[i]==search||search==undefined){array+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='string'){if(window[i]==search||search==undefined){string+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='number'){if(window[i]==search||search==undefined){number+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='boolean'){if(window[i]==search||search==undefined){boolean+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='function'){if(window[i]==search||search==undefined){func+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='undefined'){if(window[i]==search||search==undefined){undef+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&window[i]===null){if(window[i]==search||search==undefined){nul+=('\n'+i+'='+window[i])}}else if(window.hasOwnProperty(i)&&!Array.isArray(window[i])&&typeof(window[i])==='object'){if(window[i]==search||search==undefined){object+=('\n'+i+'='+window[i])}}}alert(array);alert(string);alert(number);alert(boolean);alert(func);alert(undef);alert(nul);alert(object)}`
+document.getElementById("text").value="javascript:"+url
+}
+spawn()
+</script>
+</body>
+</html>
