@@ -1,0 +1,10 @@
+a{
+    background:linear-gradient(#efe,#afa);
+    border-radius: 20px;
+    color: darkgray;
+    font-size: 20px;
+    padding: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
