@@ -1,0 +1,50 @@
+function evaluate(_str_){
+    if(_str_.indexOf("(")===-1){
+        _str_=_str_.replaceAll("--","+");
+        if(_str_[0]==="+"){_str_=_str_.substr(1,_str_.length)}
+        let F='';
+        for(let i=0;i<_str_.length;i++){
+            if(_str_[i]!=="-"&&_str_[i]!=="."&&isNaN(parseFloat(_str_[i]))){
+                F+=","+_str_[i]+","
+            }else if(_str_[i]==="-"&&i!==0){
+                F+=",+,"+_str_[i]
+            }else{
+                F+=_str_[i]
+            }
+        }
+        let nF=F.replaceAll(",,+,",",").split(",");
+        for(let o of ["^","/","*","+"]){
+            while(nF.indexOf(o)>=0){
+                let i=nF.indexOf(o);
+                let a=parseFloat(nF[i-1]);
+                let b=parseFloat(nF[i+1]);
+                nF[i+1]=""+(o==="^"?Math.pow(a,b):o==="/"?a/b:o==="*"?a*b:o==="+"?a+b:NaN);
+                nF.splice(i-1,2)
+            }
+        }
+        return parseFloat(nF.join(""))
+    }
+    let PL=[[],[]];
+    let PR=[[],[]];
+    let PMAX=0;
+    let LR=0;
+    for(let i=0;i<_str_.length;i++){
+        if(_str_[i]==="("){
+            LR++;
+            PL[0].push(LR);
+            PL[1].push(i);
+        }else if(_str_[i]===")"){
+            LR--;
+            PR[0].push(LR+1);
+            PR[1].push(i);
+        }
+        PMAX=PMAX<LR?LR:PMAX
+    }
+    let a=PL[1][PL[0].indexOf(PMAX)]+1
+    let b=PR[1][PR[0].indexOf(PMAX)]
+    let c=_str_.substr(a,b-a)
+    let d=_str_.substr(0,b-c.length-1)
+    let e=_str_.substr(b+1,_str_.length)
+    let str = d+evaluate(c)+e
+    return evaluate(str)
+};
