@@ -1,15 +1,43 @@
 function evaluate(_str_){
-    if(_str_.indexOf("(")===-1){
-        _str_=_str_.replaceAll("--","+");
-        if(_str_[0]==="+"){_str_=_str_.substr(1,_str_.length)}
+    let flag=true
+    let c
+    let d
+    let e
+    while(flag){
+        if(_str_.indexOf("(")===-1){flag=false;c=_str_;d='';e=''}else{
+            let PL=[[0],[0]];
+            let PR=[[0],[0]];
+            let PMAX=0;
+            let LR=0;
+            for(let i=0;i<_str_.length;i++){
+                if(_str_[i]==="("){
+                    LR++;
+                    PL[0].push(LR);
+                    PL[1].push(i);
+                }else if(_str_[i]===")"){
+                    LR--;
+                    PR[0].push(LR+1);
+                    PR[1].push(i);
+                }
+                PMAX=PMAX<LR?LR:PMAX
+            }
+            if(LR!==0){return NaN}
+            let a=PL[1][PL[0].indexOf(PMAX)]+1
+            let b=PR[1][PR[0].indexOf(PMAX)]
+            c=_str_.substr(a,b-a)
+            d=_str_.substr(0,b-c.length-1)
+            e=_str_.substr(b+1,_str_.length)
+        }
+        c=c.replaceAll("--","+");
+        if(c[0]==="+"){c=c.substr(1,c.length)}
         let F='';
-        for(let i=0;i<_str_.length;i++){
-            if(_str_[i]!=="-"&&_str_[i]!=="."&&isNaN(parseFloat(_str_[i]))){
-                F+=","+_str_[i]+","
-            }else if(_str_[i]==="-"&&i!==0){
-                F+=",+,"+_str_[i]
+        for(let i=0;i<c.length;i++){
+            if(c[i]!=="-"&&c[i]!=="."&&isNaN(parseFloat(c[i]))){
+                F+=","+c[i]+","
+            }else if(c[i]==="-"&&i!==0){
+                F+=",+,"+c[i]
             }else{
-                F+=_str_[i]
+                F+=c[i]
             }
         }
         let nF=F.replaceAll(",,+,",",").split(",");
@@ -22,29 +50,8 @@ function evaluate(_str_){
                 nF.splice(i-1,2)
             }
         }
-        return parseFloat(nF.join(""))
+        let newstr = parseFloat(nF.join(""))
+        _str_ = d+newstr+e
     }
-    let PL=[[],[]];
-    let PR=[[],[]];
-    let PMAX=0;
-    let LR=0;
-    for(let i=0;i<_str_.length;i++){
-        if(_str_[i]==="("){
-            LR++;
-            PL[0].push(LR);
-            PL[1].push(i);
-        }else if(_str_[i]===")"){
-            LR--;
-            PR[0].push(LR+1);
-            PR[1].push(i);
-        }
-        PMAX=PMAX<LR?LR:PMAX
-    }
-    let a=PL[1][PL[0].indexOf(PMAX)]+1
-    let b=PR[1][PR[0].indexOf(PMAX)]
-    let c=_str_.substr(a,b-a)
-    let d=_str_.substr(0,b-c.length-1)
-    let e=_str_.substr(b+1,_str_.length)
-    let str = d+evaluate(c)+e
-    return evaluate(str)
+    return parseFloat(_str_)
 };
