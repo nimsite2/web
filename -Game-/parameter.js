@@ -45,11 +45,10 @@ function moveplayer(NX,NY){
     }
     for(let i of blocks.bridge){
         if(b>i[0]&&a<i[0]+16){
-            if(d>=i[1]&&d<=i[1]+2){
-                NY=0
-                player.j=false
-                player.v=0
-                player.y=i[1]-16+player.h[1]
+            if(D<=i[1]&&d>=i[1]){
+                NY=i[1]-D;
+                player.j=false;
+                player.v=0;
             }
         }
     }
@@ -102,7 +101,7 @@ function moveplayer(NX,NY){
     for(let i in obj.type){
         if(obj.type[i]=="lift"){
             if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
-                if(d>=obj.xy[i][1]&&d<=obj.xy[i][1]+2){
+                if(D<=obj.xy[i][1]&&d>=obj.xy[i][1]){
                     if(obj.p[i][1]==0){
                         player.y-=parseInt(obj.p[i][0],16)/2
                     }else if(obj.p[i][1]==1){
@@ -112,10 +111,9 @@ function moveplayer(NX,NY){
                     }else if(obj.p[i][1]==3){
                         player.x-=parseInt(obj.p[i][0],16)/2
                     }
-                    NY=0
+                    NY=obj.xy[i][1]-D
                     player.j=false
                     player.v=0
-                    player.y=obj.xy[i][1]-16+player.h[1]
                 }
             }
         }

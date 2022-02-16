@@ -57,12 +57,12 @@ function gameloop(){
         if(inkey[37]){
             ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
             player.m=true
-            nextplayerXY[0]-=inkey[68]?9:1
+            nextplayerXY[0]-=inkey[68]?15:1
             player.t=player.t?true:true
         }else if(inkey[39]){
             ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
             player.m=true
-            nextplayerXY[0]+=inkey[68]?9:1
+            nextplayerXY[0]+=inkey[68]?15:1
             player.t=!player.t?false:false
         }else{ctime.playermove[0]=0}
         if(player.j){
