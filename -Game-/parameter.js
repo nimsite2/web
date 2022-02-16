@@ -166,7 +166,7 @@ function checkenemymove(x,y,NX,NY,type,T,D,V,J){
             if(b>i[0]&&a<i[0]+16&&i[2][1]!=2){
                 if(d>=i[1]&&d<=i[1]+3){
                     J=true;
-                    V=-parseInt(enemy.p[i][1],16)/2;
+                    V=-parseInt("f",16)/2;
                 }
                 if(c<i[1]+16&&c>=i[1]+16-1&&i[2][1]!=1){
                     V=0.3;
