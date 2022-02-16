@@ -5,16 +5,12 @@ const inkey = [];
 window.addEventListener("keydown",function(e){inkey[e.keyCode] = true});
 window.addEventListener("keyup",function(e){inkey[e.keyCode] = false});
 
-function moveplayer(NX,NY,P){
-    let A = player.x+player.w[0]
-    let B = player.x+16-player.w[1]
-    let C = player.y+player.h[0]
-    let D = player.y+16-player.h[1]
-    let a = A+NX
-    let b = B+NX
-    let c = C+NY
-    let d = D+NY
-    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
+function moveplayer(NX,NY){
+    let a = player.x+NX+player.w[0]
+    let b = player.x+NX+16-player.w[1]
+    let c = player.y+NY+player.h[0]
+    let d = player.y+NY+16-player.h[1]
+    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16/4){
         NX=0
     }
     if(c>stage["S"+area[0]]["A"+area[1]][1].length*16){
@@ -22,33 +18,36 @@ function moveplayer(NX,NY,P){
     }
     for(let i of blocks.block){
         if(c<i[1]+16&&d>i[1]){
-            if(B<=i[0]&&b>=i[0]){
-                NX=i[0]-B
+            if(b>i[0]&&a<i[0]){
+                NX=0
             }
-            if(A>=i[0]+16&&a<=i[0]+16){
-                NX=i[0]+16-A
+            if(a<i[0]+16&&b>i[0]+16){
+                NX=0
             }
         }
-        if(b>i[0]&&a<i[0]+16&&i[2][1]!=2){
-            if(D<=(i[1])&&d>=i[1]){
-                NY=i[1]-D;
+        if(b>i[0]&&a<i[0]+16&&i[2]!=2){
+            if(d>=i[1]&&d<=i[1]+3){
+                NY=0;
                 player.j=false;
                 player.v=0;
+                player.y=i[1]-16+player.h[1];
             }
-            if(C>=i[1]+16&&c<=i[1]+16&&i[2][1]!=1){
-                NY=i[1]+16-C;
+            if(c<i[1]+16&&c>=i[1]+16-1&&i[2]!=1){
+                NY=0;
                 player.v=0.3;
                 player.i=false;
                 player.j=true;
+                player.y=i[1]+16-player.h[0];
             }
         }
     }
     for(let i of blocks.bridge){
         if(b>i[0]&&a<i[0]+16){
-            if(D<=(i[1])&&d>=i[1]){
-                NY=i[1]-D;
-                player.j=false;
-                player.v=0;
+            if(d>=i[1]&&d<=i[1]+2){
+                NY=0
+                player.j=false
+                player.v=0
+                player.y=i[1]-16+player.h[1]
             }
         }
     }
@@ -58,57 +57,28 @@ function moveplayer(NX,NY,P){
         }
     }
     for(let i of blocks.spike){
-        if((i[2][2]==0)&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
+        if((i[3]==0)&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
             if(d>i[1]+(i[0]+8-b)*2&&a<=i[0]+8
             ||d>i[1]+(a-i[0]-8)*2&&b>=i[0]+8){
                 PlayerDeath("SPIKE")
             }
         }
-        if((i[2][2]==2)&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
+        if((i[3]==2)&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
             if(c<i[1]+16-(i[0]+8-b)*2&&a<=i[0]+8
             ||c<i[1]+16-(a-i[0]-8)*2&&b>=i[0]+8){
                 PlayerDeath("SPIKE")
             }
         }
-        if((i[2][2]==(i[2][1]==1?1:3))&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
+        if((i[3]==(i[2]==1?1:3))&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
             if(d>=i[1]+(i[0]+16-b)/2&&c<=i[1]+8
             ||c<=i[1]+16-(i[0]+16-b)/2&&d>=i[1]+8){
                 PlayerDeath("SPIKE")
             }
         }
-        if((i[2][2]==(i[2][1]==1?3:1))&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
+        if((i[3]==(i[2]==1?3:1))&&b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
             if(d>=i[1]+(a-i[0])/2&&c<=i[1]+8
             ||c<=i[1]+16-(a-i[0])/2&&d>=i[1]+8){
                 PlayerDeath("SPIKE")
-            }
-        }
-    }
-    for(let i in enemy.type){
-        if(enemy.type[i]==0||enemy.type[i]==1||enemy.type[i]==2){
-            if(b>enemy.xy[i][0]&&a<enemy.xy[i][0]+16&&c<enemy.xy[i][1]+16&&d>enemy.xy[i][1]+12){
-                PlayerDeath("ENEMY-"+enemy.type[i])
-                console.log(enemy.xy[i])
-                console.log(player)
-            }
-        }
-    }
-    for(let i in obj.type){
-        if(obj.type[i]=="lift"&&P!="NoLift"){
-            if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
-                if(D<=obj.xy[i][1]+(obj.p[i][2]==0?parseInt(obj.p[i][1],16)/2:obj.p[i][2]==2?-parseInt(obj.p[i][1],16)/2:0)&&d>=obj.xy[i][1]){
-                    if(obj.p[i][2]==0){
-                        moveplayer(0,-parseInt(obj.p[i][1],16)/2,"NoLift")
-                    }else if(obj.p[i][2]==1){
-                        moveplayer(parseInt(obj.p[i][1],16)/2,0,"NoLift")
-                    }else if(obj.p[i][2]==2){
-                        moveplayer(0,parseInt(obj.p[i][1],16)/2,"NoLift")
-                    }else if(obj.p[i][2]==3){
-                        moveplayer(-parseInt(obj.p[i][1],16)/2,0,"NoLift")
-                    }
-                    NY=obj.xy[i][1]-D
-                    player.j=false
-                    player.v=0
-                }
             }
         }
     }
@@ -117,13 +87,40 @@ function moveplayer(NX,NY,P){
             player.x=0
             area[1]++
             enemyreset()
-            readmap()
             break
+        }
+    }
+    for(let i in enemy.type){
+        if(enemy.type[i]==0||enemy.type[i]==1||enemy.type[i]==2){
+            if(b>enemy.xy[i][0]&&a<enemy.xy[i][0]+16&&c<enemy.xy[i][1]+16&&d>enemy.xy[i][1]+12){
+                PlayerDeath("ENEMY-"+enemy.type[i])
+            }
+        }
+    }
+    for(let i in obj.type){
+        if(obj.type[i]=="lift"){
+            if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
+                if(d>=obj.xy[i][1]&&d<=obj.xy[i][1]+2){
+                    if(obj.p[i][1]==0){
+                        player.y-=parseInt(obj.p[i][0],16)/2
+                    }else if(obj.p[i][1]==1){
+                        player.x+=parseInt(obj.p[i][0],16)/2
+                    }else if(obj.p[i][1]==2){
+                        player.y+=parseInt(obj.p[i][0],16)/2
+                    }else if(obj.p[i][1]==3){
+                        player.x-=parseInt(obj.p[i][0],16)/2
+                    }
+                    NY=0
+                    player.j=false
+                    player.v=0
+                    player.y=obj.xy[i][1]-16+player.h[1]
+                }
+            }
         }
     }
     let tx = 0
     let ty = 0
-    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][2]
+    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16/4+stage["S"+area[0]]["A"+area[1]][3][2]
     let sty = stage["S"+area[0]]["A"+area[1]][1].length*16+stage["S"+area[0]]["A"+area[1]][3][3]
     if(a<16*8&&a<=stx-16*8){
         tx=0
@@ -132,7 +129,7 @@ function moveplayer(NX,NY,P){
     }else{
         tx=-stx+16*16
     }
-    if(sty>16*12){
+    if(sty>16*12){ //=================================
         if(c>16*6&&c<=sty-16*6){
             ty=-c+16*6
         }else if(c<=16*6){
