@@ -17,11 +17,11 @@ body{
 }
 #startbtn:hover{
     border-width:4px;
-    box-shadow:0 0 10px 10px #00ffff;
+    box-shadow:0 0 10px 10px #ff00ff;
 }
 #startbtn:focus{
     border-width:4px;
-    box-shadow:0 0 10px 12px #00ffff;
+    box-shadow:0 0 10px 12px #ff00ff;
 }
 #gamemsg{
     text-align: center;
