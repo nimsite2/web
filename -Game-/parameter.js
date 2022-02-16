@@ -1,5 +1,3 @@
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
 canvas.width=16*16
 canvas.height=16*12
 const inkey = [];
