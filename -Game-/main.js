@@ -1,6 +1,4 @@
 let area = [1,1]
-canvas.width=16*16
-canvas.height=16*12
 let isgame
 let playinggame
 let stopgame=false
