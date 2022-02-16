@@ -380,90 +380,92 @@ let img = {
         ],
     }
 }
-for(let i in img){
-    for(let j in img[i]){
-        let newimg = []
-        for(let k=0;k<8;k++){
-            ctx.clearRect(0,0,16,16)
-            for(let l=0;l<img[i][j].length;l++){
-                for(let m=0;m<img[i][j][l].length;m++){
-                    let color
-                    switch(img[i][j][l][m]){
-                        case"0":color="#00000000";break;
-                        case"1":color="#ffffff";break;
-                        case"2":color="#ff0000";break;
-                        case"3":color="#ffaa00";break;
-                        case"4":color="#ffff00";break;
-                        case"5":color="#aaff00";break;
-                        case"6":color="#00ff00";break;
-                        case"7":color="#00ffaa";break;
-                        case"8":color="#00ffff";break;
-                        case"9":color="#00aaff";break;
-                        case"A":color="#0000ff";break;
-                        case"B":color="#aa00ff";break;
-                        case"C":color="#ff00aa";break;
-                        case"D":color="#ff00ff";break;
-                        case"E":color="#aa0000";break;
-                        case"F":color="#aaaa00";break;
-                        case"G":color="#00aa00";break;
-                        case"H":color="#00aaaa";break;
-                        case"I":color="#0000aa";break;
-                        case"J":color="#aa00aa";break;
-                        case"K":color="#ffaaaa";break;
-                        case"L":color="#ffffaa";break;
-                        case"M":color="#aaffaa";break;
-                        case"N":color="#aaffff";break;
-                        case"O":color="#aaaaff";break;
-                        case"P":color="#ffaaff";break;
-                        case"Q":color="#aaaaaa";break;
-                        case"R":color="#000000";break;
-                        case"S":color="#ffffff55";break;
-                        case"T":color="#ff000055";break;
-                        case"U":color="#ffaa0055";break;
-                        case"V":color="#ffff0055";break;
-                        case"W":color="#aaff0055";break;
-                        case"X":color="#00ff0055";break;
-                        case"Y":color="#00ffaa55";break;
-                        case"Z":color="#00ffff55";break;
-                        case"a":color="#00aaff55";break;
-                        case"b":color="#0000ff55";break;
-                        case"c":color="#aa00ff55";break;
-                        case"d":color="#ff00aa55";break;
-                        case"e":color="#ff00ff55";break;
-                        case"f":color="#aa000055";break;
-                        case"g":color="#aaaa0055";break;
-                        case"h":color="#00aa0055";break;
-                        case"i":color="#00aaaa55";break;
-                        case"j":color="#0000aa55";break;
-                        case"k":color="#aa00aa55";break;
-                        case"l":color="#ffaaaa55";break;
-                        case"m":color="#ffffaa55";break;
-                        case"n":color="#aaffaa55";break;
-                        case"o":color="#aaffff55";break;
-                        case"p":color="#aaaaff55";break;
-                        case"q":color="#ffaaff55";break;
-                        case"r":color="#aaaaaa55";break;
-                        case"s":color="#00000055";break;
+function makeimg(){
+    for(let i in img){
+        for(let j in img[i]){
+            let newimg = []
+            for(let k=0;k<8;k++){
+                ctx.clearRect(0,0,16,16)
+                for(let l=0;l<img[i][j].length;l++){
+                    for(let m=0;m<img[i][j][l].length;m++){
+                        let color
+                        switch(img[i][j][l][m]){
+                            case"0":color="#00000000";break;
+                            case"1":color="#ffffff";break;
+                            case"2":color="#ff0000";break;
+                            case"3":color="#ffaa00";break;
+                            case"4":color="#ffff00";break;
+                            case"5":color="#aaff00";break;
+                            case"6":color="#00ff00";break;
+                            case"7":color="#00ffaa";break;
+                            case"8":color="#00ffff";break;
+                            case"9":color="#00aaff";break;
+                            case"A":color="#0000ff";break;
+                            case"B":color="#aa00ff";break;
+                            case"C":color="#ff00aa";break;
+                            case"D":color="#ff00ff";break;
+                            case"E":color="#aa0000";break;
+                            case"F":color="#aaaa00";break;
+                            case"G":color="#00aa00";break;
+                            case"H":color="#00aaaa";break;
+                            case"I":color="#0000aa";break;
+                            case"J":color="#aa00aa";break;
+                            case"K":color="#ffaaaa";break;
+                            case"L":color="#ffffaa";break;
+                            case"M":color="#aaffaa";break;
+                            case"N":color="#aaffff";break;
+                            case"O":color="#aaaaff";break;
+                            case"P":color="#ffaaff";break;
+                            case"Q":color="#aaaaaa";break;
+                            case"R":color="#000000";break;
+                            case"S":color="#ffffff55";break;
+                            case"T":color="#ff000055";break;
+                            case"U":color="#ffaa0055";break;
+                            case"V":color="#ffff0055";break;
+                            case"W":color="#aaff0055";break;
+                            case"X":color="#00ff0055";break;
+                            case"Y":color="#00ffaa55";break;
+                            case"Z":color="#00ffff55";break;
+                            case"a":color="#00aaff55";break;
+                            case"b":color="#0000ff55";break;
+                            case"c":color="#aa00ff55";break;
+                            case"d":color="#ff00aa55";break;
+                            case"e":color="#ff00ff55";break;
+                            case"f":color="#aa000055";break;
+                            case"g":color="#aaaa0055";break;
+                            case"h":color="#00aa0055";break;
+                            case"i":color="#00aaaa55";break;
+                            case"j":color="#0000aa55";break;
+                            case"k":color="#aa00aa55";break;
+                            case"l":color="#ffaaaa55";break;
+                            case"m":color="#ffffaa55";break;
+                            case"n":color="#aaffaa55";break;
+                            case"o":color="#aaffff55";break;
+                            case"p":color="#aaaaff55";break;
+                            case"q":color="#ffaaff55";break;
+                            case"r":color="#aaaaaa55";break;
+                            case"s":color="#00000055";break;
+                        }
+                        ctx.fillStyle=color
+                        let L
+                        let M
+                        switch(k){
+                            case 0:L=l;M=m;break;
+                            case 1:L=m;M=15-l;break;
+                            case 2:L=15-l;M=15-m;break;
+                            case 3:L=15-m;M=l;break;
+                            case 4:L=l;M=15-m;break;
+                            case 5:L=m;M=l;break;
+                            case 6:L=15-l;M=m;break;
+                            case 7:L=15-m;M=15-l;break;
+                        }
+                        ctx.fillRect(M,L,1,1)
                     }
-                    ctx.fillStyle=color
-                    let L
-                    let M
-                    switch(k){
-                        case 0:L=l;M=m;break;
-                        case 1:L=m;M=15-l;break;
-                        case 2:L=15-l;M=15-m;break;
-                        case 3:L=15-m;M=l;break;
-                        case 4:L=l;M=15-m;break;
-                        case 5:L=m;M=l;break;
-                        case 6:L=15-l;M=m;break;
-                        case 7:L=15-m;M=15-l;break;
-                    }
-                    ctx.fillRect(M,L,1,1)
                 }
+                newimg[k]=new Image();
+                newimg[k].src=canvas.toDataURL("image/webp")
             }
-            newimg[k]=new Image();
-            newimg[k].src=canvas.toDataURL("image/webp")
+            img[i][j]=newimg
         }
-        img[i][j]=newimg
     }
 }

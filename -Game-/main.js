@@ -8,6 +8,7 @@ let startgame=false
 document.getElementById("startbtn").onclick = function(){
     this.style.display = "none";
     canvas.style.display = "initial";
+    makeimg()
     isgame=setInterval(selectgame,15)
 }
 function selectgame(){
