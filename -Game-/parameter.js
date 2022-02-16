@@ -1,3 +1,8 @@
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+canvas.width=16*16
+canvas.height=16*12
+
 const inkey = [];
 window.addEventListener("keydown",function(e){inkey[e.keyCode] = true});
 window.addEventListener("keyup",function(e){inkey[e.keyCode] = false});

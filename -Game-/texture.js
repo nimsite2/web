@@ -1,8 +1,3 @@
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
-canvas.width=16*16
-canvas.height=16*12
-
 function drawimg(img,x,y,C=true,T=0){
     if(!C){
         T=parseInt(T)+4
