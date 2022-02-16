@@ -26,6 +26,7 @@ function selectgame(){
         }
         if(inkey[13]){
             startgame=true
+            readmap()
             playinggame = setInterval(gameloop,15)
         }
     }
@@ -56,12 +57,12 @@ function gameloop(){
         if(inkey[37]){
             ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
             player.m=true
-            nextplayerXY[0]-=inkey[68]?3:1
+            nextplayerXY[0]-=inkey[68]?1.5:1
             player.t=player.t?true:true
         }else if(inkey[39]){
             ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
             player.m=true
-            nextplayerXY[0]+=inkey[68]?3:1
+            nextplayerXY[0]+=inkey[68]?1.5:1
             player.t=!player.t?false:false
         }else{ctime.playermove[0]=0}
         if(player.j){
@@ -87,10 +88,9 @@ function gameloop(){
             window.location.reload();
         }
     }
-    drawmap(stage["S"+area[0]]["A"+area[1]])
+    drawmap()
     moveenemy()
     ctx.fillStyle=DEBUGCOLOR
     ctx.fillRect(player.x+player.w[0],player.y+player.h[0],16-player.w[0]-player.w[1],16-player.h[0]-player.h[1])
 }
 let DEBUGCOLOR = '#00ff0050';
-
