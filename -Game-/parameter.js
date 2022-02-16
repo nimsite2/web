@@ -6,11 +6,15 @@ window.addEventListener("keydown",function(e){inkey[e.keyCode] = true});
 window.addEventListener("keyup",function(e){inkey[e.keyCode] = false});
 
 function moveplayer(NX,NY){
-    let a = player.x+NX+player.w[0]
-    let b = player.x+NX+16-player.w[1]
-    let c = player.y+NY+player.h[0]
-    let d = player.y+NY+16-player.h[1]
-    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16/4){
+    let A = player.x+player.w[0]
+    let B = player.x+16-player.w[1]
+    let C = player.y+player.h[0]
+    let D = player.y+16-player.h[1]
+    let a = A+NX
+    let b = B+NX
+    let c = C+NY
+    let d = D+NY
+    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
         NX=0
     }
     if(c>stage["S"+area[0]]["A"+area[1]][1].length*16){
@@ -18,26 +22,24 @@ function moveplayer(NX,NY){
     }
     for(let i of blocks.block){
         if(c<i[1]+16&&d>i[1]){
-            if(b>i[0]&&a<i[0]){
-                NX=0
+            if(B<=i[0]&&b>=i[0]){
+                NX=i[0]-B
             }
-            if(a<i[0]+16&&b>i[0]+16){
-                NX=0
+            if(A>=i[0]+16&&a<=i[0]+16){
+                NX=i[0]+16-A
             }
         }
-        if(b>i[0]&&a<i[0]+16&&i[2]!=2){
-            if(d>=i[1]&&d<=i[1]+3){
-                NY=0;
+        if(b>i[0]&&a<i[0]+16&&i[2][1]!=2){
+            if(D<=i[1]&&d>=i[1]){
+                NY=i[1]-D;
                 player.j=false;
                 player.v=0;
-                player.y=i[1]-16+player.h[1];
             }
-            if(c<i[1]+16&&c>=i[1]+16-1&&i[2]!=1){
-                NY=0;
+            if(C>=i[1]+16&&c<=i[1]+16&&i[2][1]!=1){
+                NY=i[1]+16-C;
                 player.v=0.3;
                 player.i=false;
                 player.j=true;
-                player.y=i[1]+16-player.h[0];
             }
         }
     }
@@ -120,7 +122,7 @@ function moveplayer(NX,NY){
     }
     let tx = 0
     let ty = 0
-    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16/4+stage["S"+area[0]]["A"+area[1]][3][2]
+    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][2]
     let sty = stage["S"+area[0]]["A"+area[1]][1].length*16+stage["S"+area[0]]["A"+area[1]][3][3]
     if(a<16*8&&a<=stx-16*8){
         tx=0
@@ -205,7 +207,7 @@ function moveenemy(){
         }
     }
     for(let i in enemy.type){
-        if(enemy.xy[i][1]>stage["S"+area[0]]["A"+area[1]][1].length*16||enemy.xy[i][0]<-20||enemy.xy[i][0]>stage["S"+area[0]]["A"+area[1]][1][0].length*16/4){
+        if(enemy.xy[i][1]>stage["S"+area[0]]["A"+area[1]][1].length*16||enemy.xy[i][0]<-20||enemy.xy[i][0]>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
             enemy.d[i]=0
         }
         if(enemy.d[i]!=0){
