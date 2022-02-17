@@ -85,8 +85,24 @@ function moveplayer(NX,NY,P){
     }
     for(let i of blocks.areamove){
         if(b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
-            player.x=0
-            area[1]++
+            if(i[2][1]=="r"){
+                area[1]+=(i[2][2]=="+"?parseInt(i[2][3]):-parseInt(i[2][3]))
+            }else if(i[2][1]=="a"){
+                area[1]=(i[2][2]=="+"?parseInt(i[2][3]):-parseInt(i[2][3]))
+            }
+            if(i[2][4]=="x"){
+                if(i[2][5]=="n"){
+                    player.x=0-player.w[0]-stage["S"+area[0]]["A"+area[1]][3][0]
+                }else{
+                    player.x=stage["S"+area[0]]["A"+area[1]][1][0].length*16-16+player.w[1]
+                }
+            }else if(i[2][4]=="y"){
+                if(i[2][5]=="n"){
+                    player.y=0-player.h[0]
+                }else{
+                    player.y=stage["S"+area[0]]["A"+area[1]][1].length*16-16+player.h[1]
+                }
+            }
             enemyreset()
             break
         }
@@ -120,22 +136,22 @@ function moveplayer(NX,NY,P){
     }
     let tx = 0
     let ty = 0
-    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][2]
-    let sty = stage["S"+area[0]]["A"+area[1]][1].length*16+stage["S"+area[0]]["A"+area[1]][3][3]
-    if(a<16*8&&a<=stx-16*8){
+    let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16
+    let sty = stage["S"+area[0]]["A"+area[1]][1].length*16
+    if(a<16*8&&a<=stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]){
         tx=0
-    }else if(a<stx-16*8){
+    }else if(a<stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]){
         tx=-a+16*8
     }else{
-        tx=-stx+16*16
+        tx=-stx+16*16-stage["S"+area[0]]["A"+area[1]][3][0]
     }
     if(sty>16*12){ //=================================
-        if(c>16*6&&c<=sty-16*6){
+        if(c>16*6&&c<=sty-16*6-stage["S"+area[0]]["A"+area[1]][3][1]){
             ty=-c+16*6
-        }else if(c<=16*6){
+        }else if(c<=16*6-stage["S"+area[0]]["A"+area[1]][3][1]){
             ty=0
         }else{
-            ty=-sty+16*12
+            ty=-sty+16*12+stage["S"+area[0]]["A"+area[1]][3][1]
         }
     }
     ctx.setTransform(1,0,0,1,parseInt(tx)+stage["S"+area[0]]["A"+area[1]][3][0],parseInt(ty)+stage["S"+area[0]]["A"+area[1]][3][1]);
