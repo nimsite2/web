@@ -20,8 +20,8 @@ function drawmap(st){
                         case"4":drawimg(img.map.bridge,j*16,i*16);blocks.bridge.push([j*16,i*16,st[k][i][j]]);break;
                         case"5":drawimg(img.map.needle,j*16,i*16);blocks.needle.push([j*16,i*16,st[k][i][j]]);break;
                         case"6":drawimg(img.map.spike,j*16,i*16,st[k][i][j][1]==0,st[k][i][j][2]);blocks.spike.push([j*16,i*16,st[k][i][j][1],st[k][i][j][2],st[k][i][j][3]]);break;
-                        case"7":if(once){obj.d.push(false);obj.xy.push([j*16,i*16,0,false]);obj.t.push(false);obj.type.push("lift");obj.p.push([st[k][i][j][1],st[k][i][j][2],st[k][i][j][3]])};break;
-                        case"8":blocks.liftturn.push([j*16,i*16,st[k][i][j][1],st[k][i][j][2],st[k][i][j][3]]);break;
+                        case"7":if(once){obj.d.push(false);obj.xy.push([j*16,i*16,0,false]);obj.t.push(false);obj.type.push("lift");obj.p.push(st[k][i][j])};break;
+                        case"8":blocks.liftturn.push([j*16,i*16,st[k][i][j]]);break;
                     }
                     drawplayer()
                 }else if(k==2){
