@@ -198,6 +198,25 @@ function objmovecheck(NX,NY,i,P){
         }
         enemy.xy[i][0]+=NX
         enemy.xy[i][1]+=NY
+    }else if(P=="lift"){
+        let A = obj.xy[i][0]+0
+        let B = obj.xy[i][0]+16
+        let C = obj.xy[i][1]+0
+        let D = obj.xy[i][1]+16
+        let a = A+NX
+        let b = B+NX
+        let c = C+NY
+        let d = D+NY
+        for(let j of blocks.liftturn){
+            if(c<j[1]+16&&d>j[1]&&(B<=j[0]&&b>=j[0]||A>=j[0]+16&&a<=j[0]+16)
+            ||b>j[0]&&a<j[0]+16&&(D<=j[1]&&d>=j[1]||C>=j[1]+16&&c<=j[1]+16)){
+                obj.p[i][1]=j[2][1]
+                obj.p[i][2]=j[2][2]
+                break
+            }
+        }
+        obj.xy[i][0]+=NX
+        obj.xy[i][1]+=NY
     }
 }
 function moveenemy(){
@@ -231,29 +250,20 @@ function moveenemy(){
     for(let i in obj.xy){
         if(!obj.d[i]){
             if(obj.type[i]=="lift"){
-                let a = obj.xy[i][0]+0
-                let b = obj.xy[i][0]+16
-                let c = obj.xy[i][1]+0
-                let d = obj.xy[i][1]+16
-                for(let j of blocks.liftturn){
-                    if(b>j[0]&&a<j[0]+16&&c<j[1]+16&&d>j[1]){
-                        obj.p[i][1]=j[2][1]
-                        obj.p[i][2]=j[2][2]
-                        break
-                    }
-                }
+                let nextxy=[0,0]
                 let S = parseInt(obj.p[i][1],16)/2
                 if(obj.p[i][2]==0){
-                    obj.xy[i][1]-=S
+                    nextxy[1]-=S
                 }else if(obj.p[i][2]==1){
-                    obj.xy[i][0]+=S
+                    nextxy[0]+=S
                 }else if(obj.p[i][2]==2){
-                    obj.xy[i][1]+=S
+                    nextxy[1]+=S
                 }else if(obj.p[i][2]==3){
-                    obj.xy[i][0]-=S
+                    nextxy[0]-=S
                 }
-                drawimg(img.obj.lift,obj.xy[i][0],obj.xy[i][1])
+                objmovecheck(...nextxy,i,"lift")
             }
+            drawimg(img.obj.lift,obj.xy[i][0],obj.xy[i][1])
         }else{
             obj.xy.splice(i,1)
             obj.t.splice(i,1)
@@ -267,7 +277,7 @@ function moveenemy(){
             enemy.d[i]=0
         }
         if(enemy.d[i]!=0){
-            if(enemy.type[i]==0){
+            if(enemy.type[i]==0||enemy.type[i]==1||enemy.type[i]==2){
                 let nextxy=[0,0]
                 if(enemy.xy[i][3]){
                     if(enemy.xy[i][2]<2){enemy.xy[i][2]+=0.05}else{enemy.xy[i][2]=2}
@@ -276,31 +286,7 @@ function moveenemy(){
                 enemy.xy[i][3]=true
                 if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
                 if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
-                objmovecheck(...nextxy,i,"e0")
-            }else if(enemy.type[i]==1){
-                let nextxy=[0,0]
-                if(enemy.xy[i][3]){
-                    if(enemy.xy[i][2]<2){enemy.xy[i][2]+=0.05}else{enemy.xy[i][2]=2}
-                    nextxy[1]+=enemy.xy[i][2]
-                }
-                enemy.xy[i][3]=true
-                if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
-                if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
-                objmovecheck(...nextxy,i,"e1")
-            }else if(enemy.type[i]==2){
-                let nextxy=[0,0]
-                if(enemy.xy[i][3]){
-                    if(enemy.xy[i][2]<2){
-                        enemy.xy[i][2]+=0.05
-                    }else{
-                        enemy.xy[i][2]=2
-                    }
-                    nextxy[1]+=enemy.xy[i][2]
-                }
-                enemy.xy[i][3]=true
-                if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
-                if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
-                objmovecheck(...nextxy,i,"e2")
+                objmovecheck(...nextxy,i,"e"+enemy.type[i])
             }
             drawimg(img.enemy[enemy.type[i]],parseInt(enemy.xy[i][0]),parseInt(enemy.xy[i][1]),!enemy.t[i]);
         }else{
