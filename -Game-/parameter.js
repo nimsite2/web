@@ -142,6 +142,64 @@ function moveplayer(NX,NY,P){
     player.x+=NX
     player.y+=NY
 }
+function objmovecheck(NX,NY,i,P){
+    if(P=="e0"||P=="e1"||P=="e2"){
+        let A = enemy.xy[i][0]+0
+        let B = enemy.xy[i][0]+16
+        let C = enemy.xy[i][1]+0+12
+        let D = enemy.xy[i][1]+16
+        let a = A+NX
+        let b = B+NX
+        let c = C+NY
+        let d = D+NY
+        for(let j of blocks.block){
+            if(c<j[1]+16&&d>j[1]){
+                if(B<=j[0]&&b>=j[0]){
+                    NX=j[0]-B
+                    enemy.t[i]=false
+                }
+                if(A>=j[0]+16&&a<=j[0]+16){
+                    NX=j[0]+16-A
+                    enemy.t[i]=true
+                }
+            }
+            if(b>j[0]&&a<j[0]+16&&j[2][1]!=2){
+                if(D<=j[1]&&d>=j[1]){
+                    enemy.xy[i][3]=false;
+                    if(P=="e1"){
+                        enemy.xy[i][3]=true;
+                        enemy.xy[i][2]=-parseInt(enemy.p[i][1],16)/2;
+                        break;
+                    }
+                    enemy.xy[i][2]=0;
+                    NY=j[1]-D
+                }
+                if(C>=j[1]+16&&c<=j[1]+16&&j[2][1]!=1){
+                    enemy.xy[i][3]=true;
+                    enemy.xy[i][2]=0.3
+                    NY=j[1]+16-C
+                }
+            }
+        }
+        for(let j in ball.xy){
+            if(b>ball.xy[j][0]+4&&a<ball.xy[j][0]+16-4&&c<ball.xy[j][1]+16-6&&d>ball.xy[j][1]+6){
+                addeffect(ball.xy[j][0],ball.xy[j][1],"dmg",6)
+                enemy.d[i]-=1
+                ball.d[j]=true
+            } 
+        }
+        if(P=="e2"&&enemy.xy[i][3]){
+            enemy.xy[i][3]=false
+            if(enemy.t[i]){
+                enemy.t[i]=false
+            }else if(!enemy.t[i]){
+                enemy.t[i]=true
+            }
+        }
+        enemy.xy[i][0]+=NX
+        enemy.xy[i][1]+=NY
+    }
+}
 function moveenemy(){
     for(let i in effect.xy){
         if(effect.d[i]>0){
@@ -179,8 +237,8 @@ function moveenemy(){
                 let d = obj.xy[i][1]+16
                 for(let j of blocks.liftturn){
                     if(b>j[0]&&a<j[0]+16&&c<j[1]+16&&d>j[1]){
-                        obj.p[i]=obj.p[i].replace(/(?<=^.{1})./,j[2][1])
-                        obj.p[i]=obj.p[i].replace(/(?<=^.{2})./,j[2][2])
+                        obj.p[i][1]=j[2][1]
+                        obj.p[i][2]=j[2][2]
                         break
                     }
                 }
@@ -210,125 +268,39 @@ function moveenemy(){
         }
         if(enemy.d[i]!=0){
             if(enemy.type[i]==0){
-                let a = enemy.xy[i][0]+0
-                let b = enemy.xy[i][0]+16
-                let c = enemy.xy[i][1]+0+12
-                let d = enemy.xy[i][1]+16
-                enemy.xy[i][3]=true
-                for(let j of blocks.block){
-                    if(c<j[1]+16&&d>j[1]){
-                        if(b>j[0]&&a<j[0]){
-                            enemy.t[i]=false
-                        }
-                        if(a<j[0]+16&&b>j[0]+16){
-                            enemy.t[i]=true
-                        }
-                    }
-                    if(b>j[0]&&a<j[0]+16&&j[2]!=2){
-                        if(d>=j[1]&&d<=j[1]+3){
-                            enemy.xy[i][3]=false;
-                            enemy.xy[i][2]=0;
-                            enemy.xy[i][1]=j[1]-16;
-                        }
-                        if(c<j[1]+16&&c>=j[1]+16-1&&j[2]!=1){
-                            enemy.xy[i][2]=0.3;
-                            enemy.xy[i][3]=true;
-                            enemy.xy[i][1]=j[1]+16-12;
-                        }
-                    }
-                }
-                for(let j in ball.xy){
-                    if(b>ball.xy[j][0]+4&&a<ball.xy[j][0]+16-4&&c<ball.xy[j][1]+16-6&&d>ball.xy[j][1]+6){
-                        addeffect(ball.xy[j][0],ball.xy[j][1],"dmg",6)
-                        enemy.d[i]-=1
-                        ball.d[j]=true
-                    } 
-                }
+                let nextxy=[0,0]
                 if(enemy.xy[i][3]){
                     if(enemy.xy[i][2]<2){enemy.xy[i][2]+=0.05}else{enemy.xy[i][2]=2}
-                    enemy.xy[i][1]+=enemy.xy[i][2]
+                    nextxy[1]+=enemy.xy[i][2]
                 }
-                if(enemy.t[i]){enemy.xy[i][0]+=parseInt(enemy.p[i][0],16)/2}
-                if(!enemy.t[i]){enemy.xy[i][0]-=parseInt(enemy.p[i][0],16)/2}
+                enemy.xy[i][3]=true
+                if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
+                if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
+                objmovecheck(...nextxy,i,"e0")
             }else if(enemy.type[i]==1){
-                let a = enemy.xy[i][0]+0
-                let b = enemy.xy[i][0]+16
-                let c = enemy.xy[i][1]+0+12
-                let d = enemy.xy[i][1]+16
-                for(let j of blocks.block){
-                    if(c<j[1]+16&&d>j[1]){
-                        if(b>j[0]&&a<j[0]){
-                            enemy.t[i]=false
-                        }
-                        if(a<j[0]+16&&b>j[0]+16){
-                            enemy.t[i]=true
-                        }
-                    }
-                    if(b>j[0]&&a<j[0]+16&&j[2]!=2){
-                        if(d>=j[1]&&d<=j[1]+3){
-                            enemy.xy[i][3]=true;
-                            enemy.xy[i][2]=-parseInt(enemy.p[i][1],16)/2;
-                            enemy.xy[i][1]=j[1]-16;
-                        }
-                        if(c<j[1]+16&&c>=j[1]+16-1&&j[2]!=1){
-                            enemy.xy[i][2]=0.3;
-                            enemy.xy[i][3]=true;
-                            enemy.xy[i][1]=j[1]+16-12;
-                        }
-                    }
-                }
-                for(let j in ball.xy){
-                    if(b>ball.xy[j][0]+4&&a<ball.xy[j][0]+16-4&&c<ball.xy[j][1]+16-6&&d>ball.xy[j][1]+6){
-                        addeffect(ball.xy[j][0],ball.xy[j][1],"dmg",6)
-                        enemy.d[i]-=1
-                        ball.d[j]=true
-                    } 
-                }
+                let nextxy=[0,0]
                 if(enemy.xy[i][3]){
                     if(enemy.xy[i][2]<2){enemy.xy[i][2]+=0.05}else{enemy.xy[i][2]=2}
-                    enemy.xy[i][1]+=enemy.xy[i][2]
+                    nextxy[1]+=enemy.xy[i][2]
                 }
-                if(enemy.t[i]){enemy.xy[i][0]+=parseInt(enemy.p[i][0],16)/2}
-                if(!enemy.t[i]){enemy.xy[i][0]-=parseInt(enemy.p[i][0],16)/2}
-            }else if(enemy.type[i]==2){
-                let a = enemy.xy[i][0]+0
-                let b = enemy.xy[i][0]+16
-                let c = enemy.xy[i][1]+0+12
-                let d = enemy.xy[i][1]+16
                 enemy.xy[i][3]=true
-                for(let j of blocks.block){
-                    if(c<j[1]+16&&d>j[1]){
-                        if(b>j[0]&&a<j[0]){
-                            enemy.t[i]=false
-                        }
-                        if(a<j[0]+16&&b>j[0]+16){
-                            enemy.t[i]=true
-                        }
-                    }
-                    if(b>j[0]&&a<j[0]+16&&j[2]!=2){
-                        if(d>=j[1]&&d<=j[1]+3){
-                            enemy.xy[i][3]=false;
-                            enemy.xy[i][1]=j[1]-16;
-                        }
-                        if(c<j[1]+16&&c>=j[1]+16-1&&j[2]!=1){
-                            enemy.xy[i][2]=0.3;
-                            enemy.xy[i][3]=true;
-                            enemy.xy[i][1]=j[1]+16-12;
-                        }
-                    }
-                }
-                for(let j in ball.xy){
-                    if(b>ball.xy[j][0]+4&&a<ball.xy[j][0]+16-4&&c<ball.xy[j][1]+16-6&&d>ball.xy[j][1]+6){
-                        addeffect(ball.xy[j][0],ball.xy[j][1],"dmg",6)
-                        enemy.d[i]-=1
-                        ball.d[j]=true
-                    } 
-                }
+                if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
+                if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
+                objmovecheck(...nextxy,i,"e1")
+            }else if(enemy.type[i]==2){
+                let nextxy=[0,0]
                 if(enemy.xy[i][3]){
-                    enemy.t[i]=enemy.t[i]?false:true
+                    if(enemy.xy[i][2]<2){
+                        enemy.xy[i][2]+=0.05
+                    }else{
+                        enemy.xy[i][2]=2
+                    }
+                    nextxy[1]+=enemy.xy[i][2]
                 }
-                if(enemy.t[i]){enemy.xy[i][0]+=parseInt(enemy.p[i][0],16)/2}
-                if(!enemy.t[i]){enemy.xy[i][0]-=parseInt(enemy.p[i][0],16)/2}
+                enemy.xy[i][3]=true
+                if(enemy.t[i]){nextxy[0]+=parseInt(enemy.p[i][0],16)/2}
+                if(!enemy.t[i]){nextxy[0]-=parseInt(enemy.p[i][0],16)/2}
+                objmovecheck(...nextxy,i,"e2")
             }
             drawimg(img.enemy[enemy.type[i]],parseInt(enemy.xy[i][0]),parseInt(enemy.xy[i][1]),!enemy.t[i]);
         }else{
