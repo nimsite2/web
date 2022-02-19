@@ -5,15 +5,25 @@ const inkey = [];
 window.addEventListener("keydown",function(e){inkey[e.keyCode] = true});
 window.addEventListener("keyup",function(e){inkey[e.keyCode] = false});
 
+function pausegame(time){
+    pause=true
+    setTimeout(function(){pause=false},time)
+}
+
 function moveplayer(NX,NY,P){
-    let A = player.x+player.w[0]
-    let B = player.x+16-player.w[1]
-    let C = player.y+player.h[0]
-    let D = player.y+16-player.h[1]
-    let a = A+NX
-    let b = B+NX
-    let c = C+NY
-    let d = D+NY
+    function resetposition(){
+        A = player.x+player.w[0]
+        B = player.x+16-player.w[1]
+        C = player.y+player.h[0]
+        D = player.y+16-player.h[1]
+        a = A+NX
+        b = B+NX
+        c = C+NY
+        d = D+NY
+    }
+    let A,B,C,D,a,b,c,d
+    resetposition()
+    scroll(a,b,c,d)
     if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
         NX=0
     }
@@ -22,20 +32,20 @@ function moveplayer(NX,NY,P){
     }
     for(let i of blocks.block){
         if(c<i[1]+16&&d>i[1]){
-            if(B<=i[0]&&b>=i[0]){
+            if(B<=i[0]&&b>=i[0]&&i[2][4]!=1){
                 NX=i[0]-B
             }
-            if(A>=i[0]+16&&a<=i[0]+16){
+            if(A>=i[0]+16&&a<=i[0]+16&&i[2][2]!=1){
                 NX=i[0]+16-A
             }
         }
-        if(b>i[0]&&a<i[0]+16&&i[2][1]!=2){
-            if(D<=i[1]&&d>=i[1]){
+        if(b>i[0]&&a<i[0]+16){
+            if(D<=i[1]&&d>=i[1]&&i[2][1]!=1){
                 NY=i[1]-D;
                 player.j=false;
                 player.v=0;
             }
-            if(C>=i[1]+16&&c<=i[1]+16&&i[2][1]!=1){
+            if(C>=i[1]+16&&c<=i[1]+16&&i[2][3]!=1){
                 NY=i[1]+16-C;
                 player.v=0.3;
                 player.i=false;
@@ -94,7 +104,7 @@ function moveplayer(NX,NY,P){
                 if(i[2][5]=="n"){
                     player.x=0-player.w[0]-stage["S"+area[0]]["A"+area[1]][3][0]
                 }else{
-                    player.x=stage["S"+area[0]]["A"+area[1]][1][0].length*16-16+player.w[1]
+                    player.x=stage["S"+area[0]]["A"+area[1]][1][0].length*16-16+player.w[1]+stage["S"+area[0]]["A"+area[1]][3][2]
                 }
             }else if(i[2][4]=="y"){
                 if(i[2][5]=="n"){
@@ -104,6 +114,9 @@ function moveplayer(NX,NY,P){
                 }
             }
             enemyreset()
+            resetposition()
+            scroll(a,b,c,d)
+            pausegame(100)
             break
         }
     }
@@ -134,16 +147,20 @@ function moveplayer(NX,NY,P){
             }
         }
     }
+    player.x+=NX
+    player.y+=NY
+}
+function scroll(a,b,c,d){
     let tx = 0
     let ty = 0
     let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16
     let sty = stage["S"+area[0]]["A"+area[1]][1].length*16
-    if(a<16*8&&a<=stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]){
+    if(a<16*8&&a<=stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]+stage["S"+area[0]]["A"+area[1]][3][2]){
         tx=0
-    }else if(a<stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]){
+    }else if(a<stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]+stage["S"+area[0]]["A"+area[1]][3][2]){
         tx=-a+16*8
     }else{
-        tx=-stx+16*16-stage["S"+area[0]]["A"+area[1]][3][0]
+        tx=-stx+16*16-stage["S"+area[0]]["A"+area[1]][3][0]-stage["S"+area[0]]["A"+area[1]][3][2]
     }
     if(sty>16*12){ //=================================
         if(c>16*6&&c<=sty-16*6-stage["S"+area[0]]["A"+area[1]][3][1]){
@@ -155,8 +172,6 @@ function moveplayer(NX,NY,P){
         }
     }
     ctx.setTransform(1,0,0,1,parseInt(tx)+stage["S"+area[0]]["A"+area[1]][3][0],parseInt(ty)+stage["S"+area[0]]["A"+area[1]][3][1]);
-    player.x+=NX
-    player.y+=NY
 }
 function objmovecheck(NX,NY,i,P){
     if(P=="e0"||P=="e1"||P=="e2"){
