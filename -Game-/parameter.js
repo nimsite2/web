@@ -1,10 +1,6 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-const inkey = [];
-window.addEventListener("keydown",function(e){inkey[e.keyCode] = true});
-window.addEventListener("keyup",function(e){inkey[e.keyCode] = false});
-
 function pausegame(time){
     pause=true
     setTimeout(function(){pause=false},time)
@@ -121,7 +117,7 @@ function moveplayer(NX,NY,P){
         }
     }
     for(let i in enemy.type){
-        if(enemy.type[i]==0||enemy.type[i]==1||enemy.type[i]==2){
+        if(enemy.type[i]<=4){
             if(b>enemy.xy[i][0]&&a<enemy.xy[i][0]+16&&c<enemy.xy[i][1]+16&&d>enemy.xy[i][1]+12){
                 PlayerDeath("ENEMY-"+enemy.type[i])
             }
@@ -174,7 +170,12 @@ function scroll(a,b,c,d){
     ctx.setTransform(1,0,0,1,parseInt(tx)+stage["S"+area[0]]["A"+area[1]][3][0],parseInt(ty)+stage["S"+area[0]]["A"+area[1]][3][1]);
 }
 function objmovecheck(NX,NY,i,P){
-    if(P=="e0"||P=="e1"||P=="e2"){
+    if(P=="e0"||P=="e1"||P=="e2"||P=="e3"){
+        if(P=="e3"){
+            if(enemy.xy[i][0]+8<=player.x+8+parseInt(enemy.p[i][1],16)*8&&player.x+8-parseInt(enemy.p[i][2],16)*8<=enemy.xy[i][0]+8){
+                NX*=parseInt(enemy.p[i][2],16)/2
+            }
+        }
         let A = enemy.xy[i][0]+0
         let B = enemy.xy[i][0]+16
         let C = enemy.xy[i][1]+0+12
@@ -308,7 +309,7 @@ function moveenemy(){
             enemy.d[i]=0
         }
         if(enemy.d[i]!=0){
-            if(enemy.type[i]==0||enemy.type[i]==1||enemy.type[i]==2){
+            if(enemy.type[i]<=4){
                 let nextxy=[0,0]
                 if(enemy.xy[i][3]){
                     if(enemy.xy[i][2]<2){enemy.xy[i][2]+=0.05}else{enemy.xy[i][2]=2}
