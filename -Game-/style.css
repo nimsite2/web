@@ -7,7 +7,7 @@ body{
     position:absolute;
     left:50%;
     top:50%;
-    translate:-50% -50%;
+    transform:translate(-50%,-50%);
     width:200px;
     height:60px;
     background:#000000;
@@ -29,7 +29,7 @@ body{
     position:absolute;
     left:50%;
     top:50%;
-    translate:-50% -50%;
+    transform:translate(-50%,-50%);
     background:#000000;
     border:2px solid #999999;
     padding:10px;
@@ -38,12 +38,28 @@ body{
 #gamemsg *{
     font-family:'Courier New', Courier, monospace;
 }
+#gametext{
+    display:none;
+    position:absolute;
+    left:25%;
+    right:25%;
+    top:70vh;
+    bottom:10vh;
+    overflow:scroll;
+    background:#000000;
+    border:2px solid #999999;
+    padding:10px;
+    font-family:'Courier New', Courier, monospace;
+}
+#gametext *{
+    font-family:'Courier New', Courier, monospace;
+}
 #canvas{
     display:none;
     position:absolute;
     left:50%;
     top:50%;
-    translate:-50% -50%;
+    transform:translate(-50%,-50%);
     background:transparent;
     width:80*3/4vh;
     height:80vh;

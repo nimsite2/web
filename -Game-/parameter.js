@@ -19,7 +19,6 @@ function moveplayer(NX,NY,P){
     }
     let A,B,C,D,a,b,c,d
     resetposition()
-    scroll(a,b,c,d)
     if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
         NX=0
     }
@@ -46,6 +45,37 @@ function moveplayer(NX,NY,P){
                 player.v=0.3;
                 player.i=false;
                 player.j=true;
+            }
+        }
+    }
+    for(let i of blocks.conveyor){
+        if(P!="NoConveyor"){
+            if(c<i[1]+16&&d>i[1]&&i[2][3]!=1){
+                if(B<=i[0]&&b>=i[0]){
+                    NX=i[0]-B
+                }
+                if(A>=i[0]+16&&a<=i[0]+16){
+                    NX=i[0]+16-A
+                }
+            }
+            if(b>i[0]&&a<i[0]+16){
+                if(D<=i[1]&&d>=i[1]){
+                    NY=i[1]-D;
+                    player.j=false;
+                    player.v=0;
+                    if(i[2][1]==1){
+                        moveplayer(-parseInt(i[2][2],16),0,"NoConveyor")
+                    }else{
+                        moveplayer(parseInt(i[2][2],16),0,"NoConveyor")
+                    }
+                    break;
+                }
+                if(C>=i[1]+16&&c<=i[1]+16){
+                    NY=i[1]+16-C;
+                    player.v=0.3;
+                    player.i=false;
+                    player.j=true;
+                }
             }
         }
     }
@@ -123,6 +153,7 @@ function moveplayer(NX,NY,P){
             }
         }
     }
+    resetposition()
     for(let i in obj.type){
         if(obj.type[i]=="lift"&&P!="NoLift"){
             if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
@@ -141,10 +172,33 @@ function moveplayer(NX,NY,P){
                     player.v=0
                 }
             }
+        }else if(obj.type[i]=="downlift"&&P!="NoDownLift"){
+            if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
+                if(D<=obj.xy[i][1]&&d>=obj.xy[i][1]){
+                    NY=obj.xy[i][1]-D
+                    player.j=false
+                    player.v=0
+                    if(obj.p[i][2]==0){
+                        moveplayer(0,-parseInt(obj.p[i][1],16)/4,"NoDownLift")
+                        obj.xy[i][1]-=parseInt(obj.p[i][1],16)/4
+                    }else if(obj.p[i][2]==1){
+                        moveplayer(parseInt(obj.p[i][1],16)/4,0,"NoDownLift")
+                        obj.xy[i][0]+=parseInt(obj.p[i][1],16)/4
+                    }else if(obj.p[i][2]==2){
+                        moveplayer(0,parseInt(obj.p[i][1],16)/4,"NoDownLift")
+                        obj.xy[i][1]+=parseInt(obj.p[i][1],16)/4
+                    }else if(obj.p[i][2]==3){
+                        moveplayer(-parseInt(obj.p[i][1],16)/4,0,"NoDownLift")
+                        obj.xy[i][0]-=parseInt(obj.p[i][1],16)/4
+                    }
+                }
+            }
         }
     }
     player.x+=NX
     player.y+=NY
+    resetposition()
+    scroll(a,b,c,d)
 }
 function scroll(a,b,c,d){
     let tx = 0
@@ -294,8 +348,10 @@ function moveenemy(){
                     nextxy[0]-=S
                 }
                 objmovecheck(...nextxy,i,"lift")
+                drawimg(img.obj.lift,obj.xy[i][0],obj.xy[i][1])
+            }else if(obj.type[i]=="downlift"){
+                drawimg(img.obj.downlift,obj.xy[i][0],obj.xy[i][1])
             }
-            drawimg(img.obj.lift,obj.xy[i][0],obj.xy[i][1])
         }else{
             obj.xy.splice(i,1)
             obj.t.splice(i,1)
@@ -373,6 +429,7 @@ function blockreset(){
         areamove:[],
         spike:[],
         liftturn:[],
+        conveyor:[],
     }
 }
 blockreset()

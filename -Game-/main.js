@@ -52,7 +52,6 @@ function selectgame(){
         }
     }
 }
-
 function gameloop(){
     if(!(pause||playerpause)){
         if(!player.d){
@@ -60,12 +59,17 @@ function gameloop(){
             if(inkey["Space"]&&!player.j){
                 player.j=true
                 player.i=true
-                player.v+=-0.1
+                player.v+=-0.15
             }else if(inkey["Space"]&&player.j&&player.i&&player.v>-1.2){
-                player.v+=-0.25
+                player.v+=-0.15
             }else{
                 player.i=false
             }
+            if(player.j){
+                if(player.v<3){player.v+=0.05}else{player.v=3}
+                nextplayerXY[1]+=player.v
+            }
+            player.j=true
             player.m=false
             // if(inkey["ArrowUp"]){
             //     player.y-=0.5
@@ -86,12 +90,9 @@ function gameloop(){
                 player.m=true
                 nextplayerXY[0]+=inkey["KeyD"]?15:1
                 player.t=!player.t?false:false
-            }else{ctime.playermove[0]=0}
-            if(player.j){
-                if(player.v<2){player.v+=0.05}else{player.v=2}
-                nextplayerXY[1]+=player.v
+            }else{
+                ctime.playermove[0]=0
             }
-            player.j=true
             if(inkey["KeyB"]&&ball.xy.length<5&&ctime.ball){
                 ctime.ball=false
                 ball.xy.push([player.x,inkey["ArrowDown"]?player.y+4:inkey["ArrowUp"]?player.y-4:player.y])
