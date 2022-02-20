@@ -52,7 +52,13 @@ function selectgame(){
         }
     }
 }
+let startmsg=true
 function gameloop(){
+    if(startmsg){
+        startmsg=false
+        document.getElementById("gametext").style.display="inline"
+        setTimeout(function(){document.getElementById("gametext").style.display="none"},1000)
+    }
     if(!(pause||playerpause)){
         if(!player.d){
             let nextplayerXY = [0,0]
