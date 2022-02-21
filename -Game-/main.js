@@ -1,4 +1,4 @@
-let area = [1,1]
+let area = [1,1,{}]
 const W = 16*16
 const H = 16*12
 canvas.width=W
@@ -52,14 +52,14 @@ function selectgame(){
         }
     }
 }
-let startmsg=true
+let startmsg=area[0]==1?true:false
 function gameloop(){
     if(startmsg){
         startmsg=false
         document.getElementById("gametext").style.display="inline"
         setTimeout(function(){document.getElementById("gametext").style.display="none"},1000)
     }
-    if(!(pause||playerpause)){
+    if(!(pause||playerpause||document.getElementById("gametext").style.display=="inline")){
         if(!player.d){
             let nextplayerXY = [0,0]
             if(inkey["Space"]&&!player.j){
@@ -89,12 +89,12 @@ function gameloop(){
             if(inkey["ArrowLeft"]){
                 ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
                 player.m=true
-                nextplayerXY[0]-=inkey["KeyD"]?15:1
+                nextplayerXY[0]-=inkey["KeyD"]?1.5:1
                 player.t=player.t?true:true
             }else if(inkey["ArrowRight"]){
                 ctime.playermove[0]=ctime.playermove[0]>ctime.playermove[1]?0:ctime.playermove[0]+1
                 player.m=true
-                nextplayerXY[0]+=inkey["KeyD"]?15:1
+                nextplayerXY[0]+=inkey["KeyD"]?1.5:1
                 player.t=!player.t?false:false
             }else{
                 ctime.playermove[0]=0

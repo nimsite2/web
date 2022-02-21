@@ -19,10 +19,10 @@ function moveplayer(NX,NY,P){
     }
     let A,B,C,D,a,b,c,d
     resetposition()
-    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16){
+    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][0]){
         NX=0
     }
-    if(c>stage["S"+area[0]]["A"+area[1]][1].length*16){
+    if(c>stage["S"+area[0]]["A"+area[1]][1].length*16-stage["S"+area[0]]["A"+area[1]][3][1]+stage["S"+area[0]]["A"+area[1]][3][3]){
         PlayerDeath("Bye")
     }
     for(let i of blocks.block){
@@ -77,6 +77,17 @@ function moveplayer(NX,NY,P){
                     player.j=true;
                 }
             }
+        }
+    }
+    for(let i of blocks.updraft){
+        if(b>i[0]&&a<i[0]+16&&c<i[1]+16&&d>i[1]){
+            player.j=true
+            if(i[2][1]=="+"){
+                player.v=-parseInt(i[2][2],16)/4
+            }else{
+                player.v=+parseInt(i[2][2],16)/4
+            }
+            break
         }
     }
     for(let i of blocks.bridge){
@@ -213,12 +224,12 @@ function scroll(a,b,c,d){
         tx=-stx+16*16-stage["S"+area[0]]["A"+area[1]][3][0]-stage["S"+area[0]]["A"+area[1]][3][2]
     }
     if(sty>16*12){ //=================================
-        if(c>16*6&&c<=sty-16*6-stage["S"+area[0]]["A"+area[1]][3][1]){
+        if(c>16*6&&c<=sty-16*6+stage["S"+area[0]]["A"+area[1]][3][1]+stage["S"+area[0]]["A"+area[1]][3][3]){
             ty=-c+16*6
-        }else if(c<=16*6-stage["S"+area[0]]["A"+area[1]][3][1]){
+        }else if(c<=16*6-stage["S"+area[0]]["A"+area[1]][3][1]-stage["S"+area[0]]["A"+area[1]][3][3]){
             ty=0
         }else{
-            ty=-sty+16*12+stage["S"+area[0]]["A"+area[1]][3][1]
+            ty=-sty+16*12-stage["S"+area[0]]["A"+area[1]][3][1]-stage["S"+area[0]]["A"+area[1]][3][3]
         }
     }
     ctx.setTransform(1,0,0,1,parseInt(tx)+stage["S"+area[0]]["A"+area[1]][3][0],parseInt(ty)+stage["S"+area[0]]["A"+area[1]][3][1]);
@@ -429,6 +440,7 @@ function blockreset(){
         areamove:[],
         spike:[],
         liftturn:[],
+        updraft:[],
         conveyor:[],
     }
 }
