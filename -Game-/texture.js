@@ -205,10 +205,10 @@ let img = {
     obj:{
         lift:[
            //0123456789ABCDEF
-            "NNNNNNNNNNNNNNNN",//0
-            "N88888888888888N",//1
-            "N88888888888888N",//2
-            "NNNNNNNNNNNNNNNN",//3
+            "AAAAAAAAAAAAAAAA",//0
+            "AKKKKKKKKKKKKKKA",//1
+            "AKKKKKKKKKKKKKKA",//2
+            "AAAAAAAAAAAAAAAA",//3
             "0000000000000000",//4
             "0000000000000000",//5
             "0000000000000000",//6

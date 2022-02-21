@@ -168,19 +168,22 @@ function moveplayer(NX,NY,P){
     for(let i in obj.type){
         if(obj.type[i]=="lift"&&P!="NoLift"){
             if(b>obj.xy[i][0]&&a<obj.xy[i][0]+16){
-                if(D<=obj.xy[i][1]+(obj.p[i][2]==0?parseInt(obj.p[i][1],16)/2:obj.p[i][2]==2?-parseInt(obj.p[i][1],16)/2:0)&&d>=obj.xy[i][1]){
-                    if(obj.p[i][2]==0){
+                if(D<=obj.xy[i][1]+((obj.p[i][2]==0&&obj.p[i][3]!=1)?parseInt(obj.p[i][1],16)/2:(obj.p[i][2]==2&&obj.p[i][3]!=1)?-parseInt(obj.p[i][1],16)/2:0)&&d>=obj.xy[i][1]){
+                    if(obj.p[i][2]==0&&obj.p[i][3]!=1){
                         moveplayer(0,-parseInt(obj.p[i][1],16)/2,"NoLift")
-                    }else if(obj.p[i][2]==1){
+                    }else if(obj.p[i][2]==1&&obj.p[i][3]!=1){
                         moveplayer(parseInt(obj.p[i][1],16)/2,0,"NoLift")
-                    }else if(obj.p[i][2]==2){
+                    }else if(obj.p[i][2]==2&&obj.p[i][3]!=1){
                         moveplayer(0,parseInt(obj.p[i][1],16)/2,"NoLift")
-                    }else if(obj.p[i][2]==3){
+                    }else if(obj.p[i][2]==3&&obj.p[i][3]!=1){
                         moveplayer(-parseInt(obj.p[i][1],16)/2,0,"NoLift")
                     }
                     NY=obj.xy[i][1]-D
                     player.j=false
                     player.v=0
+                    if(obj.p[i][3]==1){
+                        obj.p[i][3]=0
+                    }
                 }
             }
         }else if(obj.type[i]=="downlift"&&P!="NoDownLift"){
@@ -349,13 +352,13 @@ function moveenemy(){
             if(obj.type[i]=="lift"){
                 let nextxy=[0,0]
                 let S = parseInt(obj.p[i][1],16)/2
-                if(obj.p[i][2]==0){
+                if(obj.p[i][2]==0&&obj.p[i][3]!=1){
                     nextxy[1]-=S
-                }else if(obj.p[i][2]==1){
+                }else if(obj.p[i][2]==1&&obj.p[i][3]!=1){
                     nextxy[0]+=S
-                }else if(obj.p[i][2]==2){
+                }else if(obj.p[i][2]==2&&obj.p[i][3]!=1){
                     nextxy[1]+=S
-                }else if(obj.p[i][2]==3){
+                }else if(obj.p[i][2]==3&&obj.p[i][3]!=1){
                     nextxy[0]-=S
                 }
                 objmovecheck(...nextxy,i,"lift")
