@@ -19,11 +19,11 @@ function moveplayer(NX,NY,P){
     }
     let A,B,C,D,a,b,c,d
     resetposition()
-    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][0]){
+    if(a<0-stage["S"+area[0]]["A"+area[1]][3][0]||b>stage["S"+area[0]]["A"+area[1]][1][0].length*16+stage["S"+area[0]]["A"+area[1]][3][2]){
         NX=0
     }
     if(c>stage["S"+area[0]]["A"+area[1]][1].length*16-stage["S"+area[0]]["A"+area[1]][3][1]+stage["S"+area[0]]["A"+area[1]][3][3]){
-        PlayerDeath("Bye")
+        PlayerDeath("<span style=\"font-size:10ch;\">乙</span>")
     }
     for(let i of blocks.block){
         if(c<i[1]+16&&d>i[1]){
@@ -145,9 +145,9 @@ function moveplayer(NX,NY,P){
                 }
             }else if(i[2][4]=="y"){
                 if(i[2][5]=="n"){
-                    player.y=0-player.h[0]
+                    player.y=16+player.h[0]+stage["S"+area[0]]["A"+area[1]][3][1]
                 }else{
-                    player.y=stage["S"+area[0]]["A"+area[1]][1].length*16-16+player.h[1]
+                    player.y=stage["S"+area[0]]["A"+area[1]][1].length*16-16+player.h[1]+player.h[0]+stage["S"+area[0]]["A"+area[1]][3][3]
                 }
             }
             enemyreset()
@@ -219,23 +219,24 @@ function scroll(a,b,c,d){
     let ty = 0
     let stx = stage["S"+area[0]]["A"+area[1]][1][0].length*16
     let sty = stage["S"+area[0]]["A"+area[1]][1].length*16
-    if(a<16*8&&a<=stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]+stage["S"+area[0]]["A"+area[1]][3][2]){
-        tx=0
-    }else if(a<stx-16*8+stage["S"+area[0]]["A"+area[1]][3][0]+stage["S"+area[0]]["A"+area[1]][3][2]){
+    let S = stage["S"+area[0]]["A"+area[1]][3]
+    if(a<16*8-S[0]&&a<=stx-16*8+S[2]){
+        tx=S[0]
+    }else if(a<stx-16*8+S[2]){
         tx=-a+16*8
     }else{
-        tx=-stx+16*16-stage["S"+area[0]]["A"+area[1]][3][0]-stage["S"+area[0]]["A"+area[1]][3][2]
+        tx=-stx+16*16-S[2]
     }
-    if(sty>16*12){ //=================================
-        if(c>16*6&&c<=sty-16*6+stage["S"+area[0]]["A"+area[1]][3][1]+stage["S"+area[0]]["A"+area[1]][3][3]){
+    if(sty+S[1]+S[3]>=16*12){ //=================================
+        if(c<16*6-S[1]&&c<=sty-16*6+S[3]){
+            ty=S[1]
+        }else if(c<sty-16*6+S[3]){
             ty=-c+16*6
-        }else if(c<=16*6-stage["S"+area[0]]["A"+area[1]][3][1]-stage["S"+area[0]]["A"+area[1]][3][3]){
-            ty=0
         }else{
-            ty=-sty+16*12-stage["S"+area[0]]["A"+area[1]][3][1]-stage["S"+area[0]]["A"+area[1]][3][3]
+            ty=-sty+16*12-S[3]
         }
     }
-    ctx.setTransform(1,0,0,1,parseInt(tx)+stage["S"+area[0]]["A"+area[1]][3][0],parseInt(ty)+stage["S"+area[0]]["A"+area[1]][3][1]);
+    ctx.setTransform(1,0,0,1,parseInt(tx),parseInt(ty));
 }
 function objmovecheck(NX,NY,i,P){
     if(P=="e0"||P=="e1"||P=="e2"||P=="e3"){
