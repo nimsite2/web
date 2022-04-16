@@ -7,7 +7,10 @@ h1,h2,.center{
     text-align:center;
 }
 div.center{
-    padding:1cm;
+    padding-top:1cm;
+    padding-bottom:1cm;
+    text-align:center;
+    width:100%;
     border-radius:1cm;
     background:#220077;
 }
@@ -20,11 +23,11 @@ li{
     list-style:none;
 }
 li.text{
-    width:50%;
+    width:60%;
     background:#222222;
 }
 li.img{
-    width:50%;
+    width:30%;
     background:#f2f2f2;
 }
 img{
