@@ -39,3 +39,29 @@ img{
 a{
     color:#00ff00;
 }
+div.list{
+    background:#ffffff;
+    color:#000000;
+}
+div.list a{
+    text-decoration:none;
+    color:#0000ff;
+}
+div.list a:hover{
+    font-style: italic;
+    color:#0000ff;
+}
+@media only screen and (max-width: 750px) {
+    li.text{
+        width:90%;
+        background:#222222;
+        overflow-wrap:break-word;
+    }
+    ul{
+        display:inline-block;
+    }
+    li.img{
+        width:90%;
+        background:#f2f2f2;
+    }
+}

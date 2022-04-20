@@ -9,7 +9,13 @@
     </head>
     <body>
         <!-- 人のコードを勝手に見るんじゃねーぞ -->
-        <h1>二村くんが<br>おすすめのテキストエディタ</h1>
+        <div class="list">
+            <p>目次</p>
+            <a href="#te">二村くんがおすすめのテキストエディタ</a><br>
+            <a href="#fo">二村くんがおすすめのフォント</a><br>
+            <a href="#si">二村くんがおすすめのサイト</a>
+        </div>
+        <h1 id="te">二村くんが<br>おすすめのテキストエディタ</h1>
         <div class="center">
             <h2>#1 VSCode</h2>
             <ul>
@@ -90,7 +96,7 @@
                 </li>
             </ul>
         </div>
-        <h1>二村くんが<br>おすすめのフォント</h1>
+        <h1 id="fo">二村くんが<br>おすすめのフォント</h1>
         <div class="center">
             <h2>#1 Fira Code</h2>
             <ul>
@@ -123,6 +129,43 @@
                 </li>
                 <li class="img">
                     <img src="https://fontmeme.com/fonts/static/214500/monospace-font-character-map.png" alt="monospace">
+                </li>
+            </ul>
+        </div>
+        <h1 id="si">二村くんが<br>おすすめのサイト</h1>
+        <div class="center">
+            <h2>#1 AOJ Beta</h2>
+            <ul>
+                <li class="text">
+                    #良い点<br>
+                    &ensp;・いろんな問題がある<br>
+                    &ensp;・簡単な問題から難しい問題までたくさん<br>
+                    &ensp;・ほとんどの言語でできる<br>
+                    &ensp;・日本人も使ってる<br>
+                    &ensp;・無料<br>
+                    #良くないとこ<br>
+                    &ensp;・サインインが必要<br>
+                    <br>
+                    #URL:<a href="https://onlinejudge.u-aizu.ac.jp/home">https://onlinejudge.u-aizu.ac.jp/home</a>
+                </li>
+                <li class="img">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWYAAACNCAMAAACzDCDRAAAA6lBMVEX////i6PD4+vzw8/f5+fni4uLf4+ry8vLu7/D09vrw8vf39/fj5+rn6ezd3d28vLzY2dsAAAC0tbbT09Ojp66RkZFtbW2EhITLzdGgoKCsrKx5eXmTk5PR09bDxsrd3uHS6+a1uL6ZnaVcXFy6urq6vcIAmn2qrrSBgYFPs56dnZ2MkZqdoanJycl1dXWAhY+y1PLFzNVzeYRdZXKY0sWEyruGjJahyu+r2tDj9PFkZGRAQEA2Nja5wcyqs8HAx9FOWGZDTFyOwe1tvqw8rZbL4fbQ5PcSood3temTw+294tlnbntPT08uLi2kp0yYAAANfUlEQVR4nO2di2KbOBaGT2wISrCAGjAXcynYLC4XO3Fad5q2091p2rSbzvu/zgpfwcEJziRAWf6mMRxLMnyRxdGREAAZdeH3EEtR1Bl0ks1OrbQ+OPZhkL8h5vqpxVyKWsylqMVciopjpncmil3+TqfK7FSiZmCeaAEhjRkaEBJ4hgGRZxCFWRYomaKu+yUc68NiKdh6Gmd10urgCmJWDFob6NORrI8UXRtcU6I2mGrKUAFlRIOgvzDEx0UxIrPCXLUHty84AnNMj5ShHMtIDgRFmcqsGPT7MmdMWUUhLUoNMHNjLo357Cz9UqXgCMz9SawbPMcz45HMiQFpQWJRDCY6p/R5EVD84hgfE8Xxacy9y8vu6eVn6NnQufxyeZ7YLv88rzvm3emIu22OfW5YT9ce5tMvlxguTwH/eXlmntqdL5dfzjt/VtKgwBGYu+fdlc7Oulult6tTJw/z2edO58vpl27vtNs5/7w04c+nl3XHDFRtlVubu6RNTprlpG1eNxVrS60x26e1FcrDXCMdgZk6Pamt8D7mqj3lrBqLOe808oxFbf888xGYnUXVPA8oH7OLlnbVd9YnS/mSDVGkLnc939wkZBZOaM/dOb0j5TGqJCETe1QGX2gBa3lM2kaZvknZLtrZUp+L59LxmE/CqnkeUC5mK7xybMtSWdXdEGBm2HbDiCZW+kpyN6TQv2dX3tXsStimW9yBdyXZjh1SqmXRW8z2HOxZNMtgnt/NkTSfUxvb5nMpNQT3KZhdpWqeB5SLGeMZJKdr3y2oNQH/zgM7BILZYtB/0A7zfG4trkJzQ4qazWk8FxBi7iCDeeaaMAM3jZm2XA85drS1oc3nzmfsbJZ8d46tzXVtnvMbjXD15ZZAEFYEbA98WKw7VAu8TchI9gxHzmzbaDg2sKRW2kB+0kgdE1zflPy0rTdfzFXfTNXwzedSgtCbhebxmOuqZl0Ca6sGYSZtXa+uWl1+CmKmJMnetxUi9VTbcZhrr6K1mZ3he7a8dI8ZW8x5b+9qM/E39mx56R41tpjz3t4YbQv8fVteukeNLea8t3+TS2Dt9XCELnesqlvQlhs/LZy5sZjz3l4bP7wl+iNry0u3V3bBhP9ftTnv7bXxzb8Svd7aPAdMiZGEdRmrzraESfeZIq24SpuSt8tsR4iVvGyBbGSC72dCTNTSYxSQtDMWxkxrWz8IEJf8FrWkW7mOV5EXLDxYzkvrPubuxQX8db7e2WB+8/Xru5vXGxvlW6zUC3EErhW5js8m6dgISz62CFDXRW64y4xUYbWfKpDt+RCmI3QElRu5vhOmAh3FMY8EXdSRzmuor4tjngdO4QYCxL9EfcxR4igGxXgSnufSfczfflzAt5P1zgbzu7fv/nX7emuLfFuyfEsCx535rrDETFwRybccd0FeVD+FmQ4B+242OEotMLiOkLax/sK3QglSwY/i8zSGY31o6NPYUGJZHozYvgCKTMmTWA+GrKwwQNUO889z+L6P+WumNgNtY8YElQEbY5tdx9MQ4GSTvACt9naZeyoi7Ui2QFa1wTSzNhuTfwilqnhhzLJ4PUimw2B5qgXGVKboYTyReXnCG4rRHxgcMHXDnGmkD7TN91R1TKPP0mIyhY5TRIpJgos0TzExxrrOQcwxXGYyYwV6SU+jCr+Zye5S1U8GXSqFOW8yx3qayWoUNGvLS/e4sXDmozDvsu1Ngal+SkxnH3POWXQ2xg9Em+2zvIQPZX40YR7AozAzqLZaHWCxRuPdbaIPWxvCiZtrU5l0aGliesCS91OXQIo0lTaTLRBsFpZp7mGmUu5HYcy/YVi/c9KBi31P4/bm9mvqEuhKIDme44MqCGrPWdrUSHIsyY9cxpRUV8LbzKpjomSoNl0g40ikkF7a5lgWrQoLy9kO4jZ69OTix/fuyfs9zF/fvrvJdE8YCYekwxY5czfEa79Zov2IYEbmHQqTHuKmRInC+90T0omEUMr4zaq3kFyP/P12xiMwnwpV8zygQ5h//jiD95uT22B++/bdm5Tf7PumFWFXJb1ux1GjFWbLimzJcyTWxo7v72qz5WLG9bMFItJZlHycttGepJJviOfip2B2pzWt0Ycwn5yQ/vb3Pcy3tzdv6us3E8zh74Y5j8Db5Ap48yFjK0bqqbZjMTu/zayjnLPd2tYB4KXyHLpcJy8PX+GEjb0Edu9Py9x0TDY3pCx1njN/MyfvLvOjCdsZoauX1++I3mZteekeN75M96TGmO9NI8878QOho8RjdpG7DLFRpDuS2GziciBJJS6ZTVu+xG4zCxFmXSdbIJIc4jdngqM2Q5GyTJL6eMwsU1vBAczf3p9331/sYb4X1l/7zaEVhr7PLHuGxG92XD8KWfOKCt2dQ8dK98P6IJiwcDOTcX1n4S+sBSUd3z2pv/L85i5Bvd5J+c37YX3P85Kw/sKP1E33xHG8yPWx6Tmup+56gZZFeoHZsD5EAKFPp22qE3q+RL4O1tbYZMwX7+H8Yr82f32TCevjHmIFEFjoIdSj1h0+xNrEhJKJoahn7zKTlCDgbIFAmiw7G+qnkM3aDGafEtOovZ7WNt9TxZfA2qtgWP8Pov9mbXnpHje2mB+IuD8trJ+nlwnr114FJ3clYf0Pe7a8dBlbW5u3KhjWT5rmVFgf95ILm5AN67NMMqhNfGkWYSGVmRhBQNkCk8snbe/Ztqm3JRbFrE/HWxOXrDfAbW+RJ3vylNnPV7ZypsN87yRRupW2Ebqbm68phy4J63sOcegsU7Vsn1o5dN7CnJmexbie76dmHbF3iNn3m2lSQhjZaZuvOrZnztAduzUWxnwtCvowng6H8WAY9xUFRH065CeGDtpHDoR+5Ss93Mf8/scJ/Py23tk6dHlhfZyMocwiF638ZsZSkQ8SxcyTuPEucxQKrLvnN9uSlNz4k7ZZXuhHHune7O40LD65azzUh0YyT0OjFWU6ZZbLltDBAORk2RL5aWyeUfcx//Wj8/1nTvckHdZ3HFONmMgE0kfxTGlVmxnBZlTTpVnb8nxhl5lVMRXd62xb4O+F9S1fcFSHsZitsfgiPIoxnAZigIJfU74/JbVZ48fGdNIfKoYIHyfck9g8o3LD+sTrWO9sG43b2xqH9QE2K5QwqdWj+GpnwGRU7BL4B2mbb950Mra8dI8bXwZz7gTpmmh5gMUWeoDU79zZ4YVX3CieuaGYIS+4Xp3gGMz1vS2wx+5jrp+aOHpSQ7WYS9ERmL84VfM8oGZhtgdV8zygZmE2hzVtOJqF+dKrmucBNQtzbdViLkUNwgy9qtdOPKxVIKwZmGuvFnMpajGXohZzKWoxl6IWcylqMZeihmBOjalSS0+V3RsIpOpya3wNVRjzUAtYDjgkAE0LY4yBGQQyC4zC0DQDjEzDROZLOOCDagZmQ+H0qT65DvRrWdem11RfJGAp+bo/mciMPBAB9EqnxDQDc4xGk9VTfAwxeYoPJWowlbGsiLw+pAlp4OuybEkNVRjzeBL3g5iOGf7aoAVNI5V3wolyzGtDDSm6GINhtLX5kJ7gaezNL9ostFC1moF5Ny269suW1FBNfIpPDVX89sv6av/2yxqqHT0pRS3mUnTMQg+KN6gl7GZhPgnPZ1UTzVWzMLszU6qaaK6ahbm2ajGXohZzKWoQZkC4ttp/ik8N1Q5SlaIWcylqMZeiFnMpajGXohZzKSqMuep7RR/Q6gAbgfnAU61qoXUHqsX8D/XIDeNNw0ybpigcOm3YLLLw/Jj7/f54zJN/ifrJ/62s5mGGT6+I6E6XT5bN7KAlbwRLxNALdDoYa2JfF56bck8EwGKMRI5jRRpoITVloQ9NxDx99coGW1MC3tB1JPOBLmt9sTPm+f4o0H8N5HiijJ+7PieYg9FQVBQ5vh5yurFc3Cqmkyl7fCMx/yK1GWxD0Aw54Ol4qBv6QKM7CHX7ylScTCfjYPIitVkfXYuTQOeHA5o0FckRUZOkUjcR89+fPn38hDpMF0wkdm1CVzyz6V4vYUHHgmnTmIs58bkx0wSzGIuUFuucLopCnGo0Goi5oxdoDl7gCthN2AoCaZoFgfyQrZ30BmKuaiUexNGHxHYahRlyV+cvS4f/Asm7TcJcWtU9XqsDbAbm2qvFXIpazKWoxVyKWsylqMVcipqBueobTB7QavikEZjb0ZN/pOM628ut8oWFg+o2DzMYAyKmkwluLDdRDzG4hzDCDELsc1NmdJpbKwljcGk1MHQEf78aJWH9njymz2hB7XAdG/MYMSAP5bF8HY9khVcm1nNX+CQQygdKbGg6J2uI15fPqFhNUGxgIHQb1pcNzRhqfC+Y6LI2MAQYT3RRnvRHo0lsDJ893rwM6/8acLIcxNdTQTeWYf1YTl6aifnvpDbTYscYB+M+FvXA0gPeBE0L+Emg65rel7UXGaTqKzI3CDTyZRHWoyewrNNNxPxRJ6e4OnXIrFJ/lqwqvwlXFl6dvqiwmDxPhwLM0BQChk0/yaaBQ66d5bT454ZYQP3DijvNw1yVHjq8ZmGG8/qqUSsQ1F0t5lLUYi5FLeZS1GIuRS3mUtRiLkUt5lJEYR516oqZIj/7ILOz1ISD89fqpST6LNB21YeRr+TgzKzpf3kK1bcX8n7OAAAAAElFTkSuQmCC" alt="aoj">
+                </li>
+            </ul>
+            <h2>#2 W3Schools</h2>
+            <ul>
+                <li class="text">
+                    #良い点<br>
+                    &ensp;・いろんなコードがかける<br>
+                    &ensp;・すぐ試せる<br>
+                    &ensp;・ログイン不要<br>
+                    &ensp;・日本人も使ってる(?)<br>
+                    &ensp;・無料<br>
+                    <br>
+                    #URL:<a href="https://www.w3schools.com/">https://www.w3schools.com/</a>
+                </li>
+                <li class="img">
+                    <img src="data:image/png;base64,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" alt="w3">
                 </li>
             </ul>
         </div> 
