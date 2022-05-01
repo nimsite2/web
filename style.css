@@ -1,10 +1,32 @@
+body{
+    background:#888888;
+    color:#000000;
+    font-family:'Courier New', Courier, monospace;
+}
 a{
-    background:linear-gradient(#efe,#afa);
-    border-radius: 20px;
-    color: darkgray;
+    background:#cccccc;
+    border-radius: 2px;
+    color:#000000;
     font-size: 20px;
-    padding: 30px;
+    padding: 10px;
     text-decoration: none;
     display: inline-block;
+    width: 15ch;
     margin: 5px;
+}
+a:hover{
+    background:#bbbbbb;
+}
+a:active{
+    background:#eeeeee;
+}
+.menu{
+    text-align:center;
+    width:300px;
+}
+
+
+div[name="menu"]{
+    display:none;
+    clear:both;
 }

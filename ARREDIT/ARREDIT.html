@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body{
+			background:#000;
+			color:#fff;
+			font-family:'Courier New', Courier, monospace;
+		}
+		input[type="text"]{
+			background:#000;
+			color:#fff;
+			outline-style:none;
+			width:8ch;
+			height:8ch;
+			border:#f0f solid 2px;
+			font-size: 0.7ch
+		}
+		input[type="number"]{
+			background:#000;
+			color:#0ff;
+			border:#444 solid 3px;
+			outline-style:none;
+		}
+		input[type="button"]{
+			background:#000;
+			color:#0f0;
+			border:#444 solid 2px;
+			outline-style:none;
+		}
+		input[type="button"]:hover{
+			border:#888 solid 2px;
+		}
+		input[type="button"]:active{
+			border:#fff solid 2px;
+		}
+		input[name="I"]:focus{
+			color:#0ff;
+		}
+		input[name="I"]:placeholder-shown{
+			border:#555 solid 2px;
+		}
+		textarea#output{
+			outline-style:none;
+			background:#444;
+			color:#fff;
+			border:#ff0 solid 3px;
+			width:80%;
+			height:40ch;
+			white-space: pre;
+			overflow-wrap: normal;
+			overflow-x: scroll;
+		}
+		::placeholder{
+			color:#0f0;
+		}
+	</style>
+	<title>ARREDIT</title>
+</head>
+<body>
+	<lavel>width:</lavel><input type="number" value=1>
+	<lavel>height:</lavel><input type="number" value=1>
+	<input type="button" value="output" onclick="out_click()">
+	<input type="button" value="input" onclick="inp_click()">
+	<input type="button" value="copy" onclick="textcopy()">
+	<br>
+	<div id="w">
+		<input name="I" placeholder="00000000" type="text" maxlength="8">
+	</div>
+	<div id="h">
+	</div>
+	<textarea id="output" spellcheck="false"></textarea>
+	<script>
+		let wh=document.getElementsByTagName("input");
+		let w=document.getElementById("w");
+		let h=document.getElementById("h");
+		let output=document.getElementById("output");
+		wh[0].onchange = (p) => {
+			let text=""
+			if(wh[0].value<0){wh[0].value=0}
+			for(let i=0;i<wh[0].value;i++){
+				text+="<input name=\"I\" placeholder=\"00000000\" type=\"text\" maxlength=\"8\">"
+			}
+			w.innerHTML=text
+			wh[1].onchange(1)
+		}
+		wh[1].onchange = (p) => {
+			let text=""
+			if(wh[1].value<1){wh[1].value=1}
+			for(let i=0;i<wh[1].value-1;i++){
+				text+=w.innerHTML+"<br>"
+			}
+			h.innerHTML=text
+			if(p!=1){
+				wh[0].onchange(1)
+			}
+		}
+		wh[0].onchange(1)
+		wh[1].onchange(1)
+		function out_click(){
+			let I=document.getElementsByName("I")
+			let text="["
+			for(let i in I){
+				let addtext=""
+				if(I[i].value==""){
+					addtext="00000000"
+				}else{
+					let n = 8-((I[i].value+"").length)
+					addtext=I[i].value+"0".repeat(n<0?1:n)
+				}
+				text+="\""+addtext+"\""
+				if(parseInt(i)%wh[0].value==wh[0].value-1&&i!=I.length-1+""){
+					text+="],\n["
+				}else if(i!=I.length-1+""){
+					text+=","
+				}else{
+					text+="]"
+				}
+				if(i==I.length-1+""){break}
+			}
+			output.value=text
+		}
+		function inp_click(){
+			let text=output.value.replace(/\[|\]|\"|\t/g,"").trim()
+			let arr=text.match(/\n/g)
+			let h = 1
+			if(arr!=null){
+				h += arr.length;
+			}
+			let narr=text.replace(/\n/g,"").split(",")
+			let w = narr.length / h;
+			wh[0].value=w
+			wh[1].value=h
+			wh[0].onchange(1)
+			wh[1].onchange(1)
+			let I=document.getElementsByName("I")
+			for(let i in narr){
+				let addtext = narr[i]
+				if(addtext=="00000000"){addtext=""}
+				I[i].value= addtext
+			}
+		}
+		function textcopy(){
+			output.select()
+			document.execCommand('copy');
+		}
+	</script>
+</body>
+</html>

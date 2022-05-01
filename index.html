@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>Hello</title>
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="./manifest.json">
-<script>window.addEventListener('load', function() {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('./service-worker.js')}});</script>
-<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
-<link rel="apple-touch-icon" href="./favicon.ico" sizes="76x76">
-<link rel="icon" href="./favicon.ico" sizes="96x96">
-</head>
-<body bgcolor="gray">
-<h1 style="text-align: center;font-size: 200px;"><font color="red">Hello!</font></h1>
-<div style="text-align: center;">
-<a href="http://nimwebsite2.php.xdomain.jp/forum/index.php">Forum</a>
-<a href="./gameV2/index.html">なんか適当に作ったげえむ2</a>
-<a href="./Life Game/index.html?w=40&h=20&px=15">Life Game</a>
-<a href="./Tetris/index.html?w=40&h=20&px=15">Tetris</a>
-<a href="./CodeEditor/index.html">CodeEditor</a>
-<a href="./WebTextEdit/index.html">WebTextEdit</a>
-<a href="./textandimgstyle/index.html">TextAndImgStyle</a>
-<a href="./VariableViewer/index.html">VariableViewer</a>
-<a href="./LinkBlocker/index.html">LinkBlocker</a>
-<a href="HistoryReplace/index.html">HistoryReplace</a>
-<a href="./Command/index.html">CMD</a>
-</div>
-<script src="serviceWorker.js" crossorigin="anonymous">registerMyServiceWorker();</script>
-</body>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Hello</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="manifest" href="./manifest.json">
+		<script>window.addEventListener('load', function() {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('./service-worker.js')}});</script>
+		<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
+		<link rel="apple-touch-icon" href="./favicon.ico" sizes="76x76">
+		<link rel="icon" href="./favicon.ico" sizes="96x96">
+	</head>
+	<body>
+		<div class="menu">
+			<a href="http://nimwebsite2.php.xdomain.jp/forum/index.php">Forum</a>
+			<a onclick="{
+				let d=document.getElementsByName('menu')[0].style;
+				d.display=(d.display=='block'?'none':'block');
+				}">▼</a>
+			<div name="menu">
+				<a href="./gameV2/index.html">ActionGame</a>
+				<a href="./Life Game/index.html?w=40&h=20&px=15">Life Game</a>
+				<a href="./Tetris/index.html?w=40&h=20&px=15">Tetris</a>
+			</div>
+			<a onclick="{
+				let d=document.getElementsByName('menu')[1].style;
+				d.display=(d.display=='block'?'none':'block');
+				}">▼</a>
+			<div name="menu">
+				<a href="./CodeEditor/index.html">CodeEditor</a>
+				<a href="./WebTextEdit/index.html">WebTextEdit</a>
+				<a href="./textandimgstyle/index.html">TextAndImgStyle</a>
+				<a href="./VariableViewer/index.html">VariableViewer</a>
+				<a href="./LinkBlocker/index.html">LinkBlocker</a>
+				<a href="HistoryReplace/index.html">HistoryReplace</a>
+				<a href="./Command/index.html">CMD</a>
+			</div>
+		</div>
+		<script src="serviceWorker.js" crossorigin="anonymous">registerMyServiceWorker();</script>
+	</body>
 </html>
